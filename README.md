@@ -5,7 +5,7 @@
 
 1. Clone the repo
    ``` 
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/revature-2206-social-capstone/spring.git
    ```
 
 <!-- CONTRIBUTING -->
