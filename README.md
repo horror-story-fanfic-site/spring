@@ -9,7 +9,7 @@
    ```
 
 <!-- CONTRIBUTING -->
-###Contributing
+### Contributing
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
