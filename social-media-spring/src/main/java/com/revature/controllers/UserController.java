@@ -13,6 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.models.User;
 import com.revature.services.UserService;
 
+/**
+ * This controller enables the user to update their username and description 
+ * 
+ * @author Jordan Parsa
+ * @version 1.0
+ * @since 31-08-2022
+ * 
+ *
+ */
+
 @RestController
 public class UserController {
 
