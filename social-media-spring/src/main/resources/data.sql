@@ -1,9 +1,10 @@
-INSERT INTO users (id, email, password, first_name, last_name) VALUES (
+INSERT INTO users (id, email, password, first_name, last_name, username) VALUES (
     1,
     'testuser@gmail.com',
     'password',
     'Test',
-    'User'
+    'User',
+    'Username'
 );
 
 INSERT INTO posts (id, text, image_url, author_id) VALUES (
