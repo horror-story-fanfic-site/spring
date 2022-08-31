@@ -1,18 +1,32 @@
 package com.revature.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
+@Getter
+@Setter
 public class User {
 
    
@@ -22,9 +36,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-//    @ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
-//    private List<User> user;
-//    
+    @ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
+    @JsonIgnore
+    private List<User> followingList;
+    
     
     @Column(name="email", nullable=false)
     private String email;
