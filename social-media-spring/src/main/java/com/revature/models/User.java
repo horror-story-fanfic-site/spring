@@ -16,14 +16,26 @@ import javax.persistence.*;
 public class User {
 
     @Id
+    @Column(name="user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String email;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private String username;
     
     @ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
     private List<User> user;
+    
+    
+    @Column(name="user_email", nullable=false)
+    private String email;
+    
+    @Column(name="user_password", nullable=false)
+    private String password;
+    
+    @Column(name="first_name", nullable=false)
+    private String firstName;
+    
+    @Column(name="last_name", nullable=false)
+    private String lastName;
+    
+    @Column(name="username", nullable=false)
+    private String username;
 }
