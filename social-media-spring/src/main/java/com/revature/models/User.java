@@ -15,7 +15,9 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
 
-    @Id
+   
+
+	@Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -53,5 +55,19 @@ public class User {
     
     @Column(name="birth_year", nullable=true)
     private String birthYear;
+    
+
+	public User(int id, String email, String password, String firstName, String lastName, String username) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+	}
+    
+    
+    
     
 }
