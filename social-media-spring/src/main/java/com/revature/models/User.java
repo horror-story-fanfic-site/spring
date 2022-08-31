@@ -56,6 +56,13 @@ public class User {
     @Column(name="birth_year", nullable=true)
     private String birthYear;
     
+    
+    @OneToMany
+    @JoinColumn(name = "posts_fk")
+    private List<Post> posts;
+   
+    @OneToMany
+    private List<User> followers;
 
 	public User(int id, String email, String password, String firstName, String lastName, String username) {
 		super();
