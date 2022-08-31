@@ -7,7 +7,7 @@ import java.net.URI;
 import java.util.Optional;
 
 @Service
-public class AuthService {
+public class AuthService implements AuthServiceInterface {
 
     private final UserService userService;
 
