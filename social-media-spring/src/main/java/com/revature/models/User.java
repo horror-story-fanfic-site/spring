@@ -59,7 +59,7 @@ public class User {
     @OneToMany
     @JoinColumn(name = "posts_fk")
     private List<Post> posts;
-    
+   
     @OneToMany
     private List<User> followers;
 
