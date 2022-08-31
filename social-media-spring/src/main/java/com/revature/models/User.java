@@ -39,4 +39,19 @@ public class User {
     @Column(name="username", nullable=false)
     private String username;
     
+    @Column(name="profile_pic", nullable=true)
+    private String profilePic;
+    
+    @Column(name="description", nullable=true)
+    private String description;
+    
+    @Column(name="birth_day", nullable=true)
+    private String birthDay;
+    
+    @Column(name="birth_month", nullable=true)
+    private String birthMonth;
+    
+    @Column(name="birth_year", nullable=true)
+    private String birthYear;
+    
 }
