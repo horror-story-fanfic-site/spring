@@ -3,7 +3,8 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://${TRAINING_DB_ENDPOINT}/socialMedia
+#    url: jdbc:postgresql://${TRAINING_DB_ENDPOINT}/socialMedia
+    url: jdbc:postgresql://datasan.cqh852gruxxu.us-east-1.rds.amazonaws.com/socialMedia
 #    username: ${TRAINING_DB_USERNAME}
     username: datachan
 #    password: ${TRAINING_DB_PASSWORD}
