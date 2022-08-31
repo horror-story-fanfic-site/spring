@@ -1,11 +1,10 @@
 package com.revature.controllers;
 
-import java.util.List;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.revature.models.User;
 import com.revature.services.UserService;
@@ -26,8 +25,10 @@ public class FollowersController {
 	 * @return user
 	 */
 	@PostMapping(value="/followers")
-	public User insert(User user) {
-		userServ.save(user);
+	public User insert(User user, HttpSession session) {
+		User currentUser = (User) session.getAttribute("currentUser");
+		//currentUser.getFollowingList().add(user)
+		userServ.save(currentUser);
 		return user;
 		
 	}
