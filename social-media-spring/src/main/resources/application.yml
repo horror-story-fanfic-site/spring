@@ -3,12 +3,9 @@ server:
 
 spring:
   datasource:
-#    url: jdbc:postgresql://${TRAINING_DB_ENDPOINT}/socialMedia
-    url: jdbc:postgresql://datasan.cqh852gruxxu.us-east-1.rds.amazonaws.com/socialMedia
-#    username: ${TRAINING_DB_USERNAME}
-    username: datachan
-#    password: ${TRAINING_DB_PASSWORD}
-    password: p4ssw0rd
+    url: jdbc:postgresql://${TRAINING_DB_ENDPOINT}/socialMedia
+    username: ${TRAINING_DB_USERNAME}
+    password: ${TRAINING_DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   sql:
    init:
