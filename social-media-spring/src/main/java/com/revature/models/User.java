@@ -16,18 +16,18 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @Column(name="user_id")
+    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    @ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
-    private List<User> user;
+//    @ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
+//    private List<User> user;
+//    
     
-    
-    @Column(name="user_email", nullable=false)
+    @Column(name="email", nullable=false)
     private String email;
     
-    @Column(name="user_password", nullable=false)
+    @Column(name="password", nullable=false)
     private String password;
     
     @Column(name="first_name", nullable=false)
@@ -38,4 +38,5 @@ public class User {
     
     @Column(name="username", nullable=false)
     private String username;
+    
 }
