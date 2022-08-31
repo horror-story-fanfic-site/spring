@@ -10,7 +10,7 @@ spring:
   sql:
    init:
       data-locations:
-      - classpath:./teamdata.sql
+      - classpath:./data.sql
       mode: always
     
   jpa:
