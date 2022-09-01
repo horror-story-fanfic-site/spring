@@ -6,6 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
-
+	
+	@Deprecated
     Optional<User> findByEmailAndPassword(String email, String password);
+	/**
+	 * finds the user by username and password in the database
+	 * @param username the user's username
+	 * @param password the user's password
+	 * @return the User object that corresponds with the username and password
+	 */
+    Optional<User> findByUsernameAndPassword(String username, String password);
 }
