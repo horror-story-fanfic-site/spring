@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SocialMediaApplication<social-media>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.revature.SocialMediaApplication",
+            "projectName": "social-media",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
