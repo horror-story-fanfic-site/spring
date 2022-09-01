@@ -43,13 +43,12 @@ class UserServiceTests {
 				"Heater",//6
 				"H3atnr"//7
 		};
-		data.add(new User(0, "e", "p", "f", "l", "nathan"));
-//		for(int x=0;x<usernames.length;x++) {
-////			User user=new User(0, "e", "p", "f", "l", usernames[x]);
-//			User user=new User();
-//			user.setUsername(usernames[x]);
-//			data.add(user);
-//		}
+		for(int x=0;x<usernames.length;x++) {
+//			User user=new User(0, "e", "p", "f", "l", usernames[x]);
+			User user=new User();
+			user.setUsername(usernames[x]);
+			data.add(user);
+		}
 		for(int x=0;x<data.size();x++) {
 			System.out.println(data.get(x).getUsername());
 		}
