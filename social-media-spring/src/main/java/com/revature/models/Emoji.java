@@ -1,15 +1,11 @@
 package com.revature.models;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -20,28 +16,18 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "posts")
-public class Post {
-
+@Table(name = "emojis")
+public class Emoji {
+	
 	@Id
+    @Column(name="emoji_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int emojiId;
 	
-	@Column(name="text", nullable=true)	
-	private String text;
-	
-
-	@Column(name="image_url", nullable=true)
-	private String imageUrl;
-	
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Post> comments;
-	
+	@Column(name="emoji_type", nullable=true)
+	private String emojiType;
 	
 	@ManyToOne
-	private User author;
-	
-	@OneToMany
-	private List<Emoji> emojiList;
+	private User emojiOwner;
+
 }
