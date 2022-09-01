@@ -71,7 +71,6 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return "false";
-
 	}
 
 	@PostMapping("/search")
