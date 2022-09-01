@@ -38,7 +38,7 @@ public class FollowersController {
 	@Authorized
 	public ResponseEntity<User> insert(User user, HttpSession session) {
 		User currentUser = (User) session.getAttribute("user");
-		currentUser.getFollowingList().add(user);
+		currentUser.getFollowers().add(user);
 		session.setAttribute("user", currentUser);
 		return ResponseEntity.ok(userServ.save(currentUser));
 		
@@ -53,7 +53,7 @@ public class FollowersController {
 	@Authorized
 	public ResponseEntity<List<User>> getAllFollowing(HttpSession session){
 		User currentUser = (User) session.getAttribute("user");
-		return ResponseEntity.ok(currentUser.getFollowingList());
+		return ResponseEntity.ok(currentUser.getFollowers());
 		
 	}
 }

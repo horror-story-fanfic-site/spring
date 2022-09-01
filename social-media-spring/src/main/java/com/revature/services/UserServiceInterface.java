@@ -13,7 +13,7 @@ public interface UserServiceInterface {
 	 public Optional<User> findByCredentials(String email, String password);
 	 
 	 public User save(User user);
-	 
-    public List<User> searchUsers(String search) ;
+
+	Optional<User> findByUsernameCredentials(String username, String password);
 
 }
