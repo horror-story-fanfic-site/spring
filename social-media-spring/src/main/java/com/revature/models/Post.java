@@ -43,5 +43,5 @@ public class Post {
 	private User author;
 	
 	@OneToMany
-	private List<Emoji> emojiList;
+	private List<LikeAPost> emojiList;
 }
