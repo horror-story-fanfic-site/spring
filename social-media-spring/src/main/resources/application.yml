@@ -18,5 +18,9 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
+<<<<<<< HEAD
       ddl-auto: create
 
+=======
+     ddl-auto: create
+>>>>>>> 914039c36bd1feda3bdd5b7c13d89574703c17c9
