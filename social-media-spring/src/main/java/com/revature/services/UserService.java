@@ -14,11 +14,17 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
+    
+    @Deprecated
     public Optional<User> findByCredentials(String email, String password) {
         return userRepository.findByEmailAndPassword(email, password);
     }
 
+    public Optional<User> findByUsernameCredentials(String username, String password) {
+        return userRepository.findByUsernameAndPassword(username, password);
+    }
+
+    
     public User save(User user) {
         return userRepository.save(user);
     }

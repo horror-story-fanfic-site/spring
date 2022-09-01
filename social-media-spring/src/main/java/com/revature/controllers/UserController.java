@@ -36,7 +36,8 @@ public class UserController {
 	@PostMapping("/updateusername")
 	public String updateUsername(HttpSession session, HttpServletRequest req) {
 		User sessionUser = (User) session.getAttribute("user");
-		User user = service.findByCredentials(sessionUser.getEmail(), sessionUser.getPassword()).get();
+		User user = service.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
+		//User user = service.findByCredentials(sessionUser.getEmail(), sessionUser.getPassword()).get();
 		String username = req.getParameter("newUsername");
 		user.setUsername(username);
 		try {
@@ -53,7 +54,8 @@ public class UserController {
 	@PostMapping("/updatedescription")
 	public String updateDescription(HttpSession session, HttpServletRequest req) {
 		User sessionUser = (User) session.getAttribute("user");
-		User user = service.findByCredentials(sessionUser.getEmail(), sessionUser.getPassword()).get();
+		User user = service.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
+		//User user = service.findByCredentials(sessionUser.getEmail(), sessionUser.getPassword()).get();
 		String description = req.getParameter("newDescription");
 		user.setDescription(description);
 		try {
