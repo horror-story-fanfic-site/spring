@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,7 +39,11 @@ public class FollowersController {
 	 */
 	@PostMapping(value="/follow")
 	@Authorized
+<<<<<<< HEAD
 	public ResponseEntity<User> follow(FollowerRequest toFollow, HttpSession session) {
+=======
+	public ResponseEntity<User> insert(@RequestBody FollowerRequest toFollow, HttpSession session) {
+>>>>>>> 29fc2d66dc28aa820fd893617890f4889ecd934d
 		Optional<User> searchFollower = userServ.findUserFollowRequest(toFollow.getUserName(), toFollow.getFirstName(), toFollow.getLastName());
 		if(!searchFollower.isPresent()) {
             return ResponseEntity.badRequest().build();
