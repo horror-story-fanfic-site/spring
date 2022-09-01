@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.annotations.Authorized;
+import com.revature.dtos.FollowerRequest;
 import com.revature.models.User;
 import com.revature.services.UserService;
 
@@ -36,11 +38,16 @@ public class FollowersController {
 	 */
 	@PostMapping(value="/follow")
 	@Authorized
-	public ResponseEntity<User> insert(User user, HttpSession session) {
-		User currentUser = (User) session.getAttribute("user");
-		currentUser.getFollowers().add(user);
-		session.setAttribute("user", currentUser);
-		return ResponseEntity.ok(userServ.save(currentUser));
+	public ResponseEntity<User> insert(FollowerRequest toFollow, HttpSession session) {
+		Optional<User> searchFollower = userServ.findUserFollowRequest(toFollow.getUserName(), toFollow.getFirstName(), toFollow.getLastName());
+		if(!searchFollower.isPresent()) {
+            return ResponseEntity.badRequest().build();
+        }else {
+        	User currentUser = (User) session.getAttribute("user");
+        	currentUser.getFollowers().add(searchFollower.get());
+        	session.setAttribute("user", currentUser);
+        	return ResponseEntity.ok(userServ.save(currentUser));
+        }
 		
 	}
 	
