@@ -31,25 +31,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-<<<<<<< HEAD
-	public User(int id, String email, String password, String firstName, String lastName, String username) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.username = username;
-	}
 
-
-	public User(String email, String password) {
-		super();
-		this.email = email;
-		this.password = password;
-	}    
-    
-=======
     @Column(name = "email", nullable = false)
     private String email;
 
@@ -96,6 +78,4 @@ public class User {
         this.lastName = lastName;
         this.username = username;
     }
-
->>>>>>> b118bb02f7f31102fd455bab26d6a972655df016
 }

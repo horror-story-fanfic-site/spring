@@ -38,7 +38,7 @@ class FollowersControllerTest {
 		User initalVale = new User("test@gmail.com","password");
 		User expectedVale = new User("test@gmail.com","password");
 		when(userServ.insert(initalVale)).thenReturn(initalVale);
-		
+		when(session.getAttribute("user")).thenReturn(initalVale);
 		
 		User actualVale = myFollow.insert(expectedVale, "user");
 	}
