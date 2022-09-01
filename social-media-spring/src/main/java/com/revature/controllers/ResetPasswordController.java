@@ -36,3 +36,25 @@
 //		service.getUserService().updateUser(user);
 //		return "redirect:/homepage/homepage.html";
 //}
+
+//package main.service;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Repository;
+//import lombok.Getter;
+//@Repository
+//public class Service {
+//	@Getter
+//	private final ItemsInterface itemsService;
+//	@Getter
+//	private final UserInterface userService;
+//	@Getter
+//	private final CartInterface cartService;
+//	@Autowired
+//	public Service(CartInterface checkoutService, ItemsInterface itemsService, UserInterface userService
+//			, CartInterface cartService) {
+//		super();
+//		this.itemsService = itemsService;
+//		this.userService = userService;
+//		this.cartService = cartService;
+//	}
+//}

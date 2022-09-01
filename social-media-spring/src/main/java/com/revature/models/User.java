@@ -31,6 +31,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
     @Column(name = "email", nullable = false)
     private String email;
 
@@ -77,5 +78,4 @@ public class User {
         this.lastName = lastName;
         this.username = username;
     }
-
 }
