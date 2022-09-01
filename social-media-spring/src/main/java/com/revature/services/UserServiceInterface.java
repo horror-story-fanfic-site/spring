@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.revature.models.User;
@@ -14,4 +15,5 @@ public interface UserServiceInterface {
 	 public User save(User user);
 
 	Optional<User> findByUsernameCredentials(String username, String password);
+
 }
