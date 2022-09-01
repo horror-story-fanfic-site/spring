@@ -40,6 +40,6 @@ public class Post {
 	@ManyToOne
 	private User author;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<LikeAPost> emojiList;
 }

@@ -4,13 +4,6 @@ INSERT INTO users (email, password, first_name, last_name, username) VALUES (
     'Test',
     'User',
     'Username'
-),
-(
-	'testuser@gmail.com',
-	'password',
-	'Nathan',
-	'Lyman',
-	'Nathan'
 );
 INSERT INTO users(email, password, first_name, last_name, username)
 VALUES ('kylereese@gmail.com', 'password', 'kyle', 'reese', 'user1');
@@ -29,11 +22,17 @@ VALUES ('johnhammond@gmail.com', 'password', 'john', 'hammond', 'user7');
 INSERT INTO users(email, password, first_name, last_name, username) 
 VALUES ('nlyman0120@gmail.com', 'password', 'Bob', 'Jack', 'user8');
 
+INSERT INTO emoji (emoji_name, descript) VALUES ('thumbsup', 'its a like');
+INSERT INTO emoji (emoji_name, descript) VALUES ('laughing', 'its a a laughing face');
+INSERT INTO emoji (emoji_name, descript) VALUES ('scared', 'its a scared face');
+INSERT INTO emoji (emoji_name, descript) VALUES ('wow', 'its a wow face');
+
 INSERT INTO posts (id, text, image_url, author_id) VALUES (
     10000,
 	'The classic',
     'https://i.imgur.com/fhgzVEt.jpeg',
     1
+    
 ),
 (
     10001,
