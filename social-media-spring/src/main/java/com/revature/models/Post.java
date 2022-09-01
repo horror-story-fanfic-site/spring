@@ -27,17 +27,15 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 	
-	@Column(name="text", nullable=true)	
+	@Column(name="text", nullable=true)
 	private String text;
 	
 
 	@Column(name="image_url", nullable=true)
 	private String imageUrl;
 	
-	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Post> comments;
-	
 	
 	@ManyToOne
 	private User author;

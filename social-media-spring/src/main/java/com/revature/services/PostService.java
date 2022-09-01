@@ -25,6 +25,7 @@ public class PostService {
 		return this.postRepository.save(post);
 	}
 	
-	public Post postEmoji(Emoji emoji) {}
-	
+//	public Post postEmoji(Emoji emoji) {
+//		return this.postRepository.save(emoji);
+//	}
 }
