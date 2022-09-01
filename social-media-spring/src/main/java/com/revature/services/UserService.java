@@ -15,10 +15,12 @@ public class UserService implements UserServiceInterface {
         this.userRepository = userRepository;
     }
 
+    @Override
     public Optional<User> findByCredentials(String email, String password) {
         return userRepository.findByEmailAndPassword(email, password);
     }
 
+    @Override
     public User save(User user) {
         return userRepository.save(user);
     }
