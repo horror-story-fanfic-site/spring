@@ -27,6 +27,7 @@ log/
 Servers/
 .recommenders/
 .metadata/
+.sql
 
 ### IntelliJ IDEA ###
 .idea

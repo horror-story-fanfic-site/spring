@@ -19,6 +19,51 @@ public class User {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+<<<<<<< HEAD
+=======
+    
+//    @ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
+//    private List<User> user;
+//    
+    
+    @Column(name="email", nullable=false)
+    private String email;
+    
+    @Column(name="password", nullable=false)
+    private String password;
+    
+    @Column(name="first_name", nullable=false)
+    private String firstName;
+    
+    @Column(name="last_name", nullable=false)
+    private String lastName;
+    
+    @Column(name="username", nullable=false)
+    private String username;
+    
+    @Column(name="profile_pic", nullable=true)
+    private String profilePic;
+    
+    @Column(name="description", nullable=true)
+    private String description;
+    
+    @Column(name="birth_day", nullable=true)
+    private String birthDay;
+    
+    @Column(name="birth_month", nullable=true)
+    private String birthMonth;
+    
+    @Column(name="birth_year", nullable=true)
+    private String birthYear;
+    
+    
+    @OneToMany
+    @JoinColumn(name = "posts_fk")
+    private List<Post> posts;
+   
+    @OneToMany
+    private List<User> followers;
+>>>>>>> 5baf62d65e35a9efbe8bcbcf3596d9ebfd68cd91
 
     // @ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
     // private List<User> user;
