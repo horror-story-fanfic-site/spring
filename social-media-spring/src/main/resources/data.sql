@@ -1,5 +1,4 @@
-INSERT INTO users (id, email, password, first_name, last_name, username) VALUES (
-    1,
+INSERT INTO users (email, password, first_name, last_name, username) VALUES (
     'testuser@gmail.com',
     'password',
     'Test',
@@ -7,17 +6,32 @@ INSERT INTO users (id, email, password, first_name, last_name, username) VALUES 
     'Username'
 ),
 (
-	2,
 	'testuser@gmail.com',
 	'password',
 	'Nathan',
 	'Lyman',
 	'Nathan'
 );
+INSERT INTO users(email, password, first_name, last_name, username)
+VALUES ('kylereese@gmail.com', 'password', 'kyle', 'reese', 'user1');
+INSERT INTO users(email, password, first_name, last_name, username) 
+VALUES ('mattbuchanan@gmail.com', 'password', 'matt', 'buchanan', 'user2');
+INSERT INTO users(email, password, first_name, last_name, username) 
+VALUES ('gingerventura@gmail.com', 'password', 'ginger', 'ventura', 'user3');
+INSERT INTO users(email, password, first_name, last_name, username) 
+VALUES ('calebbousman@gmail.com', 'password', 'caleb', 'bousman', 'user4');
+INSERT INTO users(email, password, first_name, last_name, username) 
+VALUES ('alangrant@gmail.com', 'password', 'alan', 'grant', 'user5');
+INSERT INTO users(email, password, first_name, last_name, username) 
+VALUES ('ianmalcolm@gmail.com', 'password', 'ian', 'malcolm', 'user6');
+INSERT INTO users(email, password, first_name, last_name, username) 
+VALUES ('johnhammond@gmail.com', 'password', 'john', 'hammond', 'user7');
+INSERT INTO users(email, password, first_name, last_name, username) 
+VALUES ('nlyman0120@gmail.com', 'password', 'Bob', 'Jack', 'user8');
 
 INSERT INTO posts (id, text, image_url, author_id) VALUES (
     10000,
-    'The classic',
+	'The classic',
     'https://i.imgur.com/fhgzVEt.jpeg',
     1
 ),
