@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.revature.models.Emoji;
+import com.revature.models.LikeAPost;
 import com.revature.models.Post;
 import com.revature.repositories.PostRepository;
 
@@ -25,7 +25,8 @@ public class PostService {
 		return this.postRepository.save(post);
 	}
 	
-//	public Post postEmoji(Emoji emoji) {
-//		return this.postRepository.save(emoji);
-//	}
+	public Post postEmoji(LikeAPost emoji) {
+		return null;
+	}
+	
 }

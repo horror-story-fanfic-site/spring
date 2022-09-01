@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -16,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "emojis")
+@Table(name = "emoji")
 public class Emoji {
 	
 	@Id
@@ -24,10 +23,10 @@ public class Emoji {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int emojiId;
 	
-	@Column(name="emoji_type", nullable=true)
-	private String emojiType;
+	@Column(name="emoji_name", nullable=false, unique=true)
+	private String emojiName;
 	
-	@ManyToOne
-	private User emojiOwner;
-
+	@Column(name="desc", nullable=false)
+	private String desc;
+	
 }
