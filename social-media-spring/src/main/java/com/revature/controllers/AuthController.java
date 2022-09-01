@@ -4,11 +4,15 @@ import com.revature.dtos.LoginRequest;
 import com.revature.dtos.RegisterRequest;
 import com.revature.models.User;
 import com.revature.services.AuthService;
+import com.revature.services.UserService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @RestController
@@ -17,9 +21,12 @@ import java.util.Optional;
 public class AuthController {
 
     private final AuthService authService;
+    private final UserService userSvc;
 
-    public AuthController(AuthService authService) {
+    @Autowired
+    public AuthController(AuthService authService, UserService userSvc) {
         this.authService = authService;
+        this.userSvc=userSvc;
     }
 
     @PostMapping("/login")
@@ -56,4 +63,27 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(created));
     }
     
+    @PostMapping("/resetUserPassword")
+    public String resetUserPassword(HttpSession session, HttpServletRequest req) {
+    	
+    	User sessionUser = (User) session.getAttribute("User");
+//    	User user = userSvc.getUserInfo(sessionUser.getUsername());
+    	
+    	return " ";
+    }
+    
+//	@PostMapping("/updateuser")
+//	public String updateUser(HttpSession session, HttpServletRequest req) {
+//		User sessionUser = (User) session.getAttribute("User");
+//		User user = userSvc.getUserService().getUserInfo(sessionUser.getUsername());
+//		String email=req.getParameter("email");
+//		String password=req.getParameter("password");
+//		String confirm=req.getParameter("confirm");
+//		user.setEmail(email);
+//		if (password!=null && password.equals(confirm)) {
+//			user.setPassword(password);
+//		}
+//		userSvc.getUserService().updateUser(user);
+//		return "redirect:/homepage/homepage.html";
+//	}
 }
