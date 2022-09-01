@@ -40,7 +40,7 @@ class FollowersControllerTest {
 	@Test
 	void test() {
 		User currentUser = (User) session.getAttribute("user");
-		Optional<User> testUser = Optional.of(new User(1, null,null, "roman", "dixon", "test", null, null, null, null, null, null, null));
+		Optional<User> testUser = Optional.of(new User(1, "test@gmail.com","password", "roman", "dixon", "test", null, null, null, null, null, null, null));
 
 		when(userServ.findUserFollowRequest("test","Roman","Dixon")).thenReturn(testUser);
 		
@@ -48,6 +48,7 @@ class FollowersControllerTest {
 
 		ResponseEntity<User> actualVal = myFollow.follow(testRequest, session);
 
+		
 		
 //		verify(userServ, times(1)).findUserFollowRequest();
 		assertEquals(testUser.get(), actualVal.getBody());
