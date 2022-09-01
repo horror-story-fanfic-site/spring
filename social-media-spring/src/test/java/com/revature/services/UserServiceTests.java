@@ -44,21 +44,12 @@ class UserServiceTests {
 				"Heater",//6
 				"H3athnr"//7
 		};
-<<<<<<< HEAD
 		
-=======
->>>>>>> efc72aa3215739a3116872c3b1d548cd08bb734a
 		for(int x=0;x<usernames.length;x++) {
 //			User user=new User(0, "e", "p", "f", "l", usernames[x]);
 			User user=new User();
 			user.setUsername(usernames[x]);
 			data.add(user);
-<<<<<<< HEAD
-=======
-		}
-		for(int x=0;x<data.size();x++) {
-			System.out.println(data.get(x).getUsername());
->>>>>>> efc72aa3215739a3116872c3b1d548cd08bb734a
 		}
 		when(userRepository.findAll()).thenReturn(data);
 		
