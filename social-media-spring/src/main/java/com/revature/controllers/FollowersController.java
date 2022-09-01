@@ -44,6 +44,11 @@ public class FollowersController {
 		
 	}
 	
+	/**
+	 * returns a list of accounts the current user is following
+	 * @param session
+	 * @return
+	 */
 	@GetMapping(value="/list")
 	@Authorized
 	public ResponseEntity<List<User>> getAllFollowing(HttpSession session){
