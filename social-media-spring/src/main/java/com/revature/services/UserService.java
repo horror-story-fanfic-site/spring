@@ -28,6 +28,11 @@ public class UserService implements UserServiceInterface {
     public User save(User user) {
         return userRepository.save(user);
     }
+
+	@Override
+	public Optional<User> findUserFollowRequest(String username, String fisrtName, String lastName) {
+		return userRepository.findByUsernameAndFirstNameAndLastName(username, lastName, lastName);
+	}
     
    
 }

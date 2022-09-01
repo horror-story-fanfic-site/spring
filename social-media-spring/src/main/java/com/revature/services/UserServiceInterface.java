@@ -13,5 +13,7 @@ public interface UserServiceInterface {
 	 
 	 public User save(User user);
 
-	Optional<User> findByUsernameCredentials(String username, String password);
+	 public Optional<User> findByUsernameCredentials(String username, String password);
+	 
+	 public Optional<User> findUserFollowRequest(String username, String fisrtName, String lastName);
 }

@@ -17,4 +17,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	 * @return the User object that corresponds with the username and password
 	 */
     Optional<User> findByUsernameAndPassword(String username, String password);
+    
+    Optional<User> findByUsernameAndFirstNameAndLastName(String username, String firstName, String lastName);
 }
