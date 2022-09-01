@@ -78,4 +78,26 @@ public class User {
         this.lastName = lastName;
         this.username = username;
     }
+
+	/**
+	 * @param password
+	 * @param username
+	 */
+	public User(String password, String username) {
+		super();
+		this.password = password;
+		this.username = username;
+	}
+
+//	/**
+//	 * @param email
+//	 * @param password
+//	 */
+//	public User(String email, String password) {
+//		super();
+//		this.email = email;
+//		this.password = password;
+//	}
+    
+    
 }
