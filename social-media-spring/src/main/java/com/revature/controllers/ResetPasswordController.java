@@ -14,7 +14,7 @@
 //	private final UserService userServ;
 //	
 //	@Autowired
-//	Public ResetPasswordController(UserService userServ) {
+//	public ResetPasswordController(UserService userServ) {
 //		super();
 //		this.userServ=userServ;
 //	}
