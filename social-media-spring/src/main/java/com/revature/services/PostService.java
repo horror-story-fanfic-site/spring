@@ -8,7 +8,7 @@ import com.revature.models.Post;
 import com.revature.repositories.PostRepository;
 
 @Service
-public class PostService {
+public class PostService implements PostServiceInterface {
 
 	private PostRepository postRepository;
 	
@@ -16,10 +16,12 @@ public class PostService {
 		this.postRepository = postRepository;
 	}
 
+	@Override
 	public List<Post> getAll() {
 		return this.postRepository.findAll();
 	}
 
+	@Override
 	public Post upsert(Post post) {
 		return this.postRepository.save(post);
 	}

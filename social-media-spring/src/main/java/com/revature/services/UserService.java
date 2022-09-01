@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService implements UserServiceInterface {
 
     private final UserRepository userRepository;
 
@@ -15,10 +15,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    @Override
     public Optional<User> findByCredentials(String email, String password) {
         return userRepository.findByEmailAndPassword(email, password);
     }
 
+    @Override
     public User save(User user) {
         return userRepository.save(user);
     }
