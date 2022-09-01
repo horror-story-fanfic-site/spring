@@ -67,5 +67,42 @@ public class UserController {
 		return "false";
 
 	}
-
+	
+	/**
+	 * The controller method to change the birthday of the user
+	 * @param session the HTTP session
+	 * @param req the HTTPServlet req
+	 * @return A string stating whether or not the birthday was changed
+	 */
+	@PostMapping("/changeBirthday")
+	public String updateBirthday(HttpSession session, HttpServletRequest req) {
+		
+		User sessionUser = (User) session.getAttribute("user");
+		User user = service.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
+		
+		
+		String newBirthDay = req.getParameter("newBirthDay");
+		String newBirthMonth = req.getParameter("newBirthMonth");
+		String newBirthYear = req.getParameter("newBirthYear");
+		
+		
+		return service.changeDoB(user, newBirthDay, newBirthMonth, newBirthYear);
+	}
+	
+	/**
+	 * 
+	 * @param session the HTTP session
+	 * @param req the HTTPServlet req
+	 * @return a string stating if the profile picture has changed
+	 */
+	@PostMapping("/changeProfilePicture")
+	public String updatePicture(HttpSession session, HttpServletRequest req) {
+		
+		User sessionUser = (User) session.getAttribute("user");
+		User user = service.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
+		
+		String newProfilePicture = req.getParameter("newProfilePicture");
+		
+		return service.changeProfilePicture(user, newProfilePicture);
+	}
 }
