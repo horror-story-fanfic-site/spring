@@ -41,6 +41,9 @@ class FollowersControllerTest {
 		when(session.getAttribute("user")).thenReturn(initalVale);
 		
 		User actualVale = myFollow.insert(expectedVale, "user");
+		
+		
+		
 	}
 
 }
