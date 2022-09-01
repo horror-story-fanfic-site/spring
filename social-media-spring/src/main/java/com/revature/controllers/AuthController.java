@@ -64,12 +64,16 @@ public class AuthController {
     }
     
     @PostMapping("/resetUserPassword")
-    public String resetUserPassword(HttpSession session, HttpServletRequest req) {
+    public ResponseEntity<User> resetUserPassword(@RequestBody LoginRequest loginRequest, HttpSession session) {
+    
+    	String defaultPassword = "Passw0rd";
     	
     	User sessionUser = (User) session.getAttribute("User");
 //    	User user = userSvc.getUserInfo(sessionUser.getUsername());
+//   	User user = 
     	
-    	return " ";
+//    	return ResponseEntity.ok(user.get());
+    	return null;
     }
     
 //	@PostMapping("/updateuser")

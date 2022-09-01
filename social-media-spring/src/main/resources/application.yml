@@ -18,8 +18,4 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
-<<<<<<< HEAD
-      ddl-auto: create-drop
-=======
-      ddl-auto: create
->>>>>>> b118bb02f7f31102fd455bab26d6a972655df016
+     ddl-auto: create
