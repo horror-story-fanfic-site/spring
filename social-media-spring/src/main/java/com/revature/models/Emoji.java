@@ -23,10 +23,10 @@ public class Emoji {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int emojiId;
 	
-	@Column(name="emoji_name", nullable=false, unique=true)
+	@Column(name="emoji_name", nullable=true, unique=true)
 	private String emojiName;
 	
-	@Column(name="desc", nullable=false)
+	@Column(name="descript", nullable=true)
 	private String desc;
 	
 }
