@@ -7,11 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.time.LocalDate;
 import java.util.GregorianCalendar;
 =======
 import java.util.List;
 >>>>>>> 6db780c720feaf8bad253b89d1d5912dfb317679
+=======
+import java.time.LocalDate;
+import java.util.GregorianCalendar;
+import java.util.List;
+>>>>>>> 5e9696276f6c41fa541ddfdd61cce25dcb526267
 import java.util.Optional;
 
 @Service
@@ -19,6 +25,7 @@ public class UserService { // implements UserServiceInterface {
 
     private final UserRepository userRepository;
 
+    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -35,6 +42,9 @@ public class UserService { // implements UserServiceInterface {
         return userRepository.save(user);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 5e9696276f6c41fa541ddfdd61cce25dcb526267
     
     
     /**
@@ -181,7 +191,10 @@ public class UserService { // implements UserServiceInterface {
     	
     }
     
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 5e9696276f6c41fa541ddfdd61cce25dcb526267
 
 	public Optional<User> findUserFollowRequest(String username, String fisrtName, String lastName) {
 		return userRepository.findByUsernameAndFirstNameAndLastName(username, lastName, lastName);
@@ -192,6 +205,9 @@ public class UserService { // implements UserServiceInterface {
 	}
     
    
+<<<<<<< HEAD
 >>>>>>> 6db780c720feaf8bad253b89d1d5912dfb317679
+=======
+>>>>>>> 5e9696276f6c41fa541ddfdd61cce25dcb526267
 }
 

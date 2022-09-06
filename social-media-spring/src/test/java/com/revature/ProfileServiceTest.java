@@ -66,8 +66,8 @@ class ProfileServiceTest {
 		String username = "Dacus";
 		String password = "password";
 		
-		Optional<User> intUser1 = Optional.of(new User(1,"bear@aol.com","password","Bod","Bold","Dacus","pic url","i like pizza","6","5","1991",null,null));
-		User expectedUser1 = new User(1,"bear@aol.com","password","Bod","Bold","Dacus","pic url","i like pizza","6","5","1991",null,null);
+		Optional<User> intUser1 = Optional.of(new User(1,"bear@aol.com","password","Bod","Bold","Dacus","pic url","i like pizza","6","5","1991",null,null,null));
+		User expectedUser1 = new User(1,"bear@aol.com","password","Bod","Bold","Dacus","pic url","i like pizza","6","5","1991",null,null,null);
 		when(userRepository.findByUsernameAndPassword(username, password)).thenReturn(intUser1);
 	
 		//act

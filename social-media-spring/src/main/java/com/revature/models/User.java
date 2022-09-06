@@ -65,9 +65,14 @@ public class User {
     @OneToMany
     @JoinColumn(name = "posts_fk")
     private List<Post> posts;
-
+    
+    //people who follow this user
     @OneToMany
     private List<User> followers;
+    
+    //people who this user follows
+    @OneToMany
+    private List<User> peopleFollowed;
 
     public User(int id, String email, String password, String firstName, String lastName, String username) {
         super();
