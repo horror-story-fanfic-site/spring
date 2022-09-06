@@ -10,6 +10,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	@Deprecated
     Optional<User> findByEmailAndPassword(String email, String password);
+	
 	/**
 	 * finds the user by username and password in the database
 	 * @param username the user's username
