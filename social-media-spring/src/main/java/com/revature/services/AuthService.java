@@ -18,6 +18,11 @@ public class AuthService { // implements AuthServiceInterface {
     public Optional<User> findByCredentials(String email, String password) {
         return userService.findByCredentials(email, password);
     }
+    
+    public Optional<User> findByEmail(String email){
+    	return userService.findByEmail(email);
+    	
+    }
 
     public User register(User user) {
         return userService.save(user);
