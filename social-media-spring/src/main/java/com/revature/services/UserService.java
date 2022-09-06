@@ -33,6 +33,10 @@ public class UserService { // implements UserServiceInterface {
 	public Optional<User> findUserFollowRequest(String username, String fisrtName, String lastName) {
 		return userRepository.findByUsernameAndFirstNameAndLastName(username, lastName, lastName);
 	}
+
+	public Optional<User> findByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
     
    
 }

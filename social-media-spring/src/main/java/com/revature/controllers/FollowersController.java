@@ -50,7 +50,6 @@ public class FollowersController {
         }else {
         	User currentUser = (User) session.getAttribute("user");
         	currentUser.getFollowers().add(searchFollower.get());
-        	session.setAttribute("user", currentUser);
         	return ResponseEntity.ok(userServ.save(currentUser));
         }
 		
