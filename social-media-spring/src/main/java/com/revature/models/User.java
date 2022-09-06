@@ -32,7 +32,7 @@ public class User {
     private int id;
 
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique=true)
     private String email;
 
     @Column(name = "password", nullable = false)
@@ -44,7 +44,7 @@ public class User {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "username", nullable = false)
+    @Column(name = "username", nullable = false, unique=true)
     private String username;
 
     @Column(name = "profile_pic", nullable = true)
@@ -65,9 +65,14 @@ public class User {
     @OneToMany
     @JoinColumn(name = "posts_fk")
     private List<Post> posts;
-
+    
+    //people who follow this user
     @OneToMany
     private List<User> followers;
+    
+    //people who this user follows
+    @OneToMany
+    private List<User> peopleFollowed;
 
     public User(int id, String email, String password, String firstName, String lastName, String username) {
         super();
