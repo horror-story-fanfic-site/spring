@@ -2,6 +2,9 @@ package com.revature.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+import static org.mockito.MockitoSession.*;
+
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,8 +14,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
 
 import com.revature.controllers.FollowersController;
+import com.revature.dtos.FollowerRequest;
 import com.revature.models.User;
 import com.revature.services.UserService;
 @SpringBootTest
@@ -35,15 +40,18 @@ class FollowersControllerTest {
 	@Test
 	void test() {
 		User currentUser = (User) session.getAttribute("user");
-		User initalVale = new User("test@gmail.com","password");
-		User expectedVale = new User("test@gmail.com","password");
-		when(userServ.save(initalVale)).thenReturn(initalVale);
-		when(session.getAttribute("user")).thenReturn(initalVale);
+		Optional<User> testUser = Optional.of(new User(1, "test@gmail.com","password", "roman", "dixon", "test", null, null, null, null, null, null, null));
 
-//		User actualVale = myFollow.insert(expectedVale, "user");
+		when(userServ.findUserFollowRequest("test","Roman","Dixon")).thenReturn(testUser);
+		
+		FollowerRequest testRequest = new FollowerRequest("test","Roman","Dixon");
+
+		ResponseEntity<User> actualVal = myFollow.insert(testRequest, session);
+
 		
 		
-		
+//		verify(userServ, times(1)).findUserFollowRequest();
+		assertEquals(testUser.get(), actualVal.getBody());
 	}
 
 }

@@ -39,7 +39,9 @@ public class FollowersController {
 	 */
 	@PostMapping(value="/follow")
 	@Authorized
+
 	public ResponseEntity<User> insert(@RequestBody FollowerRequest toFollow, HttpSession session) {
+
 		Optional<User> searchFollower = userServ.findUserFollowRequest(toFollow.getUserName(), toFollow.getFirstName(), toFollow.getLastName());
 		if(!searchFollower.isPresent()) {
             return ResponseEntity.badRequest().build();
