@@ -33,12 +33,15 @@ public class PostService {
 	}
 	
 	public void postEmoji(int postId, LikeAPost like) {
-		like=likeAPostRepository.save(like);
 		Post post = postRepository.getReferenceById(postId);
-		if (post!=null) {
-			post.getEmojiList().add(like);
-			postRepository.save(post);
+		
+		if (post==null) {
+			throw new IllegalArgumentException();
 		}
+		//TODO exception for if it already exists.
+		like=likeAPostRepository.save(like);
+		post.getEmojiList().add(like);
+		postRepository.save(post);
 	}
 	
 	public Emoji getEmoji(int id) {
