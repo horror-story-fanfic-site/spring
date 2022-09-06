@@ -8,7 +8,7 @@ import com.revature.models.Post;
 import com.revature.repositories.PostRepository;
 
 @Service
-public class PostService {
+public class PostService { // implements PostServiceInterface {
 
 	private PostRepository postRepository;
 	
