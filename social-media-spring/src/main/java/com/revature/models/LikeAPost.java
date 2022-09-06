@@ -31,5 +31,5 @@ public class LikeAPost {
 	
 	@ManyToOne
 	private Emoji emoji;
-
+	
 }

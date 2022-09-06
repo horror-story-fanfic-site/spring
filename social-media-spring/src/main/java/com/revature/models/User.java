@@ -1,24 +1,36 @@
 package com.revature.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
+@Getter
+@Setter
 public class User {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -67,4 +79,25 @@ public class User {
         this.username = username;
     }
 
+	/**
+	 * @param password
+	 * @param username
+	 */
+	public User(String password, String username) {
+		super();
+		this.password = password;
+		this.username = username;
+	}
+
+//	/**
+//	 * @param email
+//	 * @param password
+//	 */
+//	public User(String email, String password) {
+//		super();
+//		this.email = email;
+//		this.password = password;
+//	}
+    
+    
 }
