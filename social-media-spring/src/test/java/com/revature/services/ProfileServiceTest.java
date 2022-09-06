@@ -79,6 +79,31 @@ class ProfileServiceTest {
 		assertEquals(expectedUser1, actualUser.get());
 	}
 	
+	@Test
+	void testChangeDoB() {
+		
+		//arrange
+		String testDay = "31";
+		String testMonth = "12";
+		String testYear = "1997";
+		
+		//initial value
+		User initialUser = new User(1,"bear@aol.com","password","Bod","Bold","Dacus","pic url","i like pizza","6","5","1991",null,null,null);
+		//expected value
+		User expectedUser1 = new User(1,"bear@aol.com","password","Bod","Bold","Dacus","pic url","i like pizza","31","12","1997",null,null,null);
+		//mapping the functionality of the method we wish to 'mock'
+		when(userRepository.save(initialUser)).thenReturn(expectedUser1);
+		
+		//act
+		String birthdayChanged = userService.changeDoB(initialUser, testDay, testMonth, testYear);
+		
+		//verify
+		verify(userRepository,times(1)).save(initialUser);
+		
+		assertEquals("Birthday Changed", birthdayChanged);
+		
+	}
+	
 	
 
 }
