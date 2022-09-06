@@ -46,7 +46,7 @@ class FollowersControllerTest {
 		
 		FollowerRequest testRequest = new FollowerRequest("test","Roman","Dixon");
 
-		ResponseEntity<User> actualVal = myFollow.follow(testRequest, session);
+		ResponseEntity<User> actualVal = myFollow.insert(testRequest, session);
 
 		
 		
