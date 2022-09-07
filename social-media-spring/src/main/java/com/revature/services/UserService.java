@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import com.revature.models.Post;
 import com.revature.models.User;
 import com.revature.repositories.UserRepository;
 import org.springframework.stereotype.Service;
@@ -79,4 +80,21 @@ public class UserService {
     	}
     	return users;
     }
+    
+    /***
+     * Run this to record when a user views a post.
+     * @param user
+     * @param post
+     * @return
+     */
+    public boolean viewPost(User user, Post post) {
+		List<Post> posts=user.getPostViews();
+		if (posts.contains(post)) {
+			return false;
+		}
+    	posts.add(post);
+		
+		userRepository.save(user);
+		return true;
+	}
 }
