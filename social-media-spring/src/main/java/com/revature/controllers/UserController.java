@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -120,15 +121,29 @@ public class UserController {
 	}
 	
 	// view one user, BUT this functionality should already be handled by the login controller so this may be irrelevant.
-//	@GetMapping("/viewUser")
-//	public User findUser(HttpSession session, HttpServletRequest req) {
-//		
-//		User sessionUser = (User) session.getAttribute("user");
-//		User user = userService.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
-//		
-//		return userService.getuserById(user.getId());
-//		
-//	}
+	@GetMapping("/viewUser")
+	public User findUser(HttpSession session, HttpServletRequest req) {
+		
+		User sessionUser = (User) session.getAttribute("user");
+		User user = userService.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
+		
+		return userService.getuserById(user.getId());
+		
+	}
 	
+	/**
+	 * Find the User, given the username
+	 * @param req, looking for the parameter "username"
+	 * @return the User
+	 */
+	@GetMapping("/findUser")
+	public Optional<User> findUser(HttpServletRequest req) {
+		
+		String username = req.getParameter("username");
+		
+		return userService.findByUsername(username);
+		
+		
+	}
 
 }
