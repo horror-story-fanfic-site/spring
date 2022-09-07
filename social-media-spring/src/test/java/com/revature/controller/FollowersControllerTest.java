@@ -47,7 +47,7 @@ class FollowersControllerTest {
 		FollowerRequest testRequest = new FollowerRequest("test","Roman","Dixon");
 
 		ResponseEntity<User> actualVal = myFollow.insert(testRequest, session);
-
+		
 		
 		
 //		verify(userServ, times(1)).findUserFollowRequest();
