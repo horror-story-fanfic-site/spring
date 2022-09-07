@@ -55,7 +55,7 @@ class ProfileServiceTest {
 	}
 
 	@Test
-	void test() {
+	void testFindByUsernameAndPassword() {
 		
 		//arrange
 		String username = "Dacus";
@@ -98,7 +98,6 @@ class ProfileServiceTest {
 		assertEquals("Birthday Changed", birthdayChanged);
 		
 	}
-	
 	
 
 }
