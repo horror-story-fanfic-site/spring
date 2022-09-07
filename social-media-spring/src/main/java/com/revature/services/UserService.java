@@ -87,14 +87,14 @@ public class UserService {
      * @param post
      * @return
      */
-    public boolean viewPost(User user, Post post) {
-		List<Post> posts=user.getPostViews();
-		if (posts.contains(post)) {
-			return false;
-		}
-    	posts.add(post);
-		
-		userRepository.save(user);
-		return true;
-	}
+//    public boolean viewPost(User user, Post post) {
+//		List<Post> posts=user.getPostViews();
+//		if (posts.contains(post)) {
+//			return false;
+//		}
+//    	posts.add(post);
+//		
+//		userRepository.save(user);
+//		return true;
+//	}
 }

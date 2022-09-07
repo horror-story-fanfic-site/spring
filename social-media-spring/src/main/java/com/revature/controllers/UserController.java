@@ -36,13 +36,13 @@ import com.revature.services.UserService;
 public class UserController {
 	
 	private final UserService userService;
-	private final PostService postService;
+//	private final PostService postService;
 	
 	
-	public UserController(UserService userService, PostService postService) {
+	public UserController(UserService userService) {
 		super();
 		this.userService = userService;
-		this.postService = postService;
+//		this.postService = postService;
 	}
 
 	@PostMapping("/updateusername")
@@ -85,19 +85,19 @@ public class UserController {
 		return ResponseEntity.ok(userService.searchUsers(query));
 	}
 	
-	@Authorized
-	@PostMapping("/viewPost")
-	public String viewPost(HttpSession session, HttpServletRequest req){
-		User sessionUser = (User) session.getAttribute("user");
-		User user = userService.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
-		int postId=Integer.parseInt(req.getParameter("postId"));
-		Post post=postService.getPost(postId);
-		boolean viewedBefore=userService.viewPost(user, post);
-		if (viewedBefore)
-			return "false";
-		else
-			return "true";
-		
-	}
+//	@Authorized
+//	@PostMapping("/viewPost")
+//	public String viewPost(HttpSession session, HttpServletRequest req){
+//		User sessionUser = (User) session.getAttribute("user");
+//		User user = userService.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
+//		int postId=Integer.parseInt(req.getParameter("postId"));
+//		Post post=postService.getPost(postId);
+//		boolean viewedBefore=userService.viewPost(user, post);
+//		if (viewedBefore)
+//			return "false";
+//		else
+//			return "true";
+//		
+//	}
 	
 }
