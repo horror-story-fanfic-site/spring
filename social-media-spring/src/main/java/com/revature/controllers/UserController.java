@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +23,6 @@ import com.revature.services.UserService;
 /**
  * This controller enables the user to update their username and description 
  * 
- * @author Jordan Parsa
  * @version 1.0
  * @since 31-08-2022
  * 
@@ -145,5 +145,22 @@ public class UserController {
 		
 		
 	}
+
+	@PostMapping("/getAllUsernames")
+	public List<String> getAllUsernames(){
+		
+		List<String> usernameList = new ArrayList<>();
+		List<User> userList = new ArrayList<>();
+		userList = userService.findAllUsers();
+		
+		for(int i=0; i<userList.size(); i++) {
+		String temp = userList.get(i).getUsername();
+		usernameList.add(temp);
+		}
+		
+		return usernameList;
+	}
+	
+
 
 }
