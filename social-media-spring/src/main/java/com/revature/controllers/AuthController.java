@@ -82,10 +82,10 @@ public class AuthController {
     }
     
     @Authorized
-    @PostMapping("/resetUserPassword")
+    @PostMapping("/resetuserpassword")
     public ResponseEntity<User> resetUserPassword(@RequestBody LoginRequest loginRequest, HttpSession session) {
     	
-    	User sessionUser = (User) session.getAttribute("User");
+    	User sessionUser = (User) session.getAttribute("user");
     	sessionUser.setPassword(loginRequest.getPassword());
     	userSvc.save(sessionUser);
     	return ResponseEntity.ok(sessionUser);

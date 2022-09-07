@@ -37,17 +37,18 @@ public class FollowersController {
 	 * @param user
 	 * @return user
 	 */
-	@PostMapping(value="/follow")
 	@Authorized
-
+	@PostMapping(value="/follow")
 	public ResponseEntity<User> insert(@RequestBody FollowerRequest toFollow, HttpSession session) {
 
-		Optional<User> searchFollower = userServ.findUserFollowRequest(toFollow.getUserName(), toFollow.getFirstName(), toFollow.getLastName());
+		Optional<User> searchFollower = userServ.findUserFollowRequest(toFollow.getUserName());
 		if(!searchFollower.isPresent()) {
             return ResponseEntity.badRequest().build();
         }else {
         	User currentUser = (User) session.getAttribute("user");
-        	currentUser.getFollowers().add(searchFollower.get());
+        	currentUser.getPeopleFollowed().add(searchFollower.get());
+        	searchFollower.get().getFollowers().add(currentUser);
+        	userServ.save(searchFollower.get());
         	return ResponseEntity.ok(userServ.save(currentUser));
         }
 		
@@ -58,9 +59,17 @@ public class FollowersController {
 	 * @param session
 	 * @return
 	 */
-	@GetMapping(value="/list")
 	@Authorized
+	@GetMapping(value="/followinglist")
 	public ResponseEntity<List<User>> getAllFollowing(HttpSession session){
+		User currentUser = (User) session.getAttribute("user");
+		return ResponseEntity.ok(currentUser.getPeopleFollowed());
+		
+	}
+	
+	@Authorized
+	@GetMapping(value="/followerlist")
+	public ResponseEntity<List<User>> getAllFollowers(HttpSession session){
 		User currentUser = (User) session.getAttribute("user");
 		return ResponseEntity.ok(currentUser.getFollowers());
 		

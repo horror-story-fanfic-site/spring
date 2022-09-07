@@ -40,9 +40,9 @@ class FollowersControllerTest {
 	@Test
 	void test() {
 		User currentUser = (User) session.getAttribute("user");
-		Optional<User> testUser = Optional.of(new User(1, "test@gmail.com","password", "roman", "dixon", "test", null, null, null, null, null, null, null));
+		Optional<User> testUser = Optional.of(new User(1, "test@gmail.com","password", "roman", "dixon", "test", null, null, null, null, null, null, null, null));
 
-		when(userServ.findUserFollowRequest("test","Roman","Dixon")).thenReturn(testUser);
+		//when(userServ.findUserFollowRequest("test","Roman","Dixon")).thenReturn(testUser);
 		
 		FollowerRequest testRequest = new FollowerRequest("test","Roman","Dixon");
 

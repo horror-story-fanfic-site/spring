@@ -2,14 +2,19 @@ package com.revature.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -67,11 +72,12 @@ public class User {
     private List<Post> posts;
     
     //people who follow this user
-    @OneToMany
+    @ManyToMany
+    @JsonIgnore
     private List<User> followers;
     
     //people who this user follows
-    @OneToMany
+    @ManyToMany
     private List<User> peopleFollowed;
 
     public User(int id, String email, String password, String firstName, String lastName, String username) {
