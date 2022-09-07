@@ -50,11 +50,6 @@ class ProfileServiceTest {
 	
 	}
 		
-		
-
-	
-	
-
 	@AfterEach
 	void tearDown() throws Exception {
 	}
