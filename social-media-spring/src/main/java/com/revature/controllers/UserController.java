@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -118,6 +119,17 @@ public class UserController {
 		String query=req.getParameter("query");
 		return ResponseEntity.ok(userService.searchUsers(query));
 	}
+	
+	// view one user, BUT this functionality should already be handled by the login controller so this may be irrelevant.
+//	@GetMapping("/viewUser")
+//	public User findUser(HttpSession session, HttpServletRequest req) {
+//		
+//		User sessionUser = (User) session.getAttribute("user");
+//		User user = userService.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
+//		
+//		return userService.getuserById(user.getId());
+//		
+//	}
 	
 
 }
