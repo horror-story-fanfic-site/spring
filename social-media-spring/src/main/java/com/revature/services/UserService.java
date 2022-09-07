@@ -88,7 +88,7 @@ public class UserService { // implements UserServiceInterface {
 		return users;
 	}
 
-       
+//Ever heard of DRY?       
     /**
      * Change the birthday of the user in the database
      * @param user the model of the user
@@ -241,6 +241,10 @@ public class UserService { // implements UserServiceInterface {
 
 	public Optional<User> findByEmail(String email) {
 		return userRepository.findByEmail(email);
+	}
+	
+	public List<User> findAllUsers() {
+		return userRepository.findAll();
 	}
 
     
