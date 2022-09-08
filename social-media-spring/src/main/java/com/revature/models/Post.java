@@ -44,4 +44,14 @@ public class Post {
 	
 	@OneToMany
 	private List<LikeAPost> emojiList;
+
+	public Post(int id, String text) {
+		super();
+		this.id = id;
+		this.text = text;
+	}
+
+
+	
+	
 }
