@@ -146,13 +146,14 @@ public class UserController {
 	
 	// view one user, BUT this functionality should already be handled by the login controller so this may be irrelevant.
 	@GetMapping("/viewUser")
-	public ResponseEntity<Optional<User>> findUser(HttpSession session, HttpServletRequest req) {
+	public Optional<User> findUser(HttpSession session, HttpServletRequest req) {
 		
 		User sessionUser = (User) session.getAttribute("user");
 		User user = userService.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
 		
-		return findUser(user.getUsername());
-		
+		//return findUser(user.getUsername());
+		System.out.println("Getting Information");
+		return userService.findByUsername(user.getUsername());
 	}
 	
 	/**
@@ -163,7 +164,7 @@ public class UserController {
 	 */
 //	@Authorized
 	@GetMapping("/peek")
-	public ResponseEntity<Optional<User>> findUser(HttpServletRequest req) {
+	public Optional<User> findUser(HttpServletRequest req) {
 		
 		String username = req.getParameter("username");
 		
@@ -180,10 +181,10 @@ public class UserController {
 	 */
 	@Authorized
 	@GetMapping("/peek/{username}")
-	public ResponseEntity<Optional<User>> findUser(@PathVariable("username") String username) {
+	public Optional<User> findUser(@PathVariable("username") String username) {
 		
-		//return userService.getByUsername(username);
-		return ResponseEntity.ok(this.userService.findByUsername(username));
+		return userService.findByUsername(username);
+
 		
 		
 	}
