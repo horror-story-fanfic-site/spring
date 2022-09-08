@@ -72,13 +72,19 @@ public class User {
     private List<Post> posts;
     
     //people who follow this user
-    @ManyToMany
+    @ManyToMany(fetch =FetchType.EAGER)
     @JsonIgnore
     private List<User> followers;
     
+
+//    @ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+//	private List<Post> postViews;
+   //TODO change it to a model that keeps track of when it was viewed and other complex stuff
     //people who this user follows
+    
     @ManyToMany
     private List<User> peopleFollowed;
+
 
     public User(int id, String email, String password, String firstName, String lastName, String username) {
         super();
