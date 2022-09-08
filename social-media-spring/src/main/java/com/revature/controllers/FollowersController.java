@@ -3,6 +3,7 @@ package com.revature.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,4 +75,5 @@ public class FollowersController {
 		return ResponseEntity.ok(currentUser.getFollowers());
 		
 	}
+	
 }
