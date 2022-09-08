@@ -248,7 +248,11 @@ public class UserService { // implements UserServiceInterface {
 	}
 
 
-
+	/**
+	 * 
+	 * @param username the username of the User
+	 * @return return a user if it exists
+	 */
 	public Optional<User> findByUsername(String username) {
 		
 		return userRepository.findByUsername(username);

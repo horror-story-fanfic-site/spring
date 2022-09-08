@@ -98,7 +98,7 @@ public class UserController {
 	}
 	
 	/**
-	 * 
+	 * The endpoint used to change the profile picture
 	 * @param session the HTTP session
 	 * @param req the HTTPServlet req
 	 * @return a string stating if the profile picture has changed
@@ -121,7 +121,7 @@ public class UserController {
 		return ResponseEntity.ok(userService.searchUsers(query));
 	}
 	
-	// view one user, BUT this functionality should already be handled by the login controller so this may be irrelevant.
+	// view one user that is currently logged in.
 	@GetMapping("/viewUser")
 	public User findUser(HttpSession session, HttpServletRequest req) {
 		
@@ -133,9 +133,10 @@ public class UserController {
 	}
 	
 	/**
-	 * Find the User, given the username
+	 * Find the User, given just a username, used for finding a person.
+	 * This username is taken from a parameter
 	 * @param req, looking for the parameter "username"
-	 * @return the User
+	 * @return the found User
 	 */
 	@GetMapping("/peek")
 	public Optional<User> findUser(HttpServletRequest req) {
@@ -148,6 +149,11 @@ public class UserController {
 		
 	}
 	
+	/**
+	 * Find the user, given the username, given just a username
+	 * @param username
+	 * @return
+	 */
 	@GetMapping("/peek/{username}")
 	public Optional<User> findUser(@PathVariable("username") String username) {
 		
