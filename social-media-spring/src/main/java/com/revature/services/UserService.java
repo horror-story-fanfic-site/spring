@@ -3,6 +3,7 @@ package com.revature.services;
 import com.revature.models.User;
 import com.revature.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.GregorianCalendar;
@@ -261,6 +262,10 @@ public class UserService { // implements UserServiceInterface {
 
     
    
+//	public ResponseEntity<User> getByUsername(String username) {
+//		
+//		return userRepository.getByUsername(username);
+//	}
 
 }
 

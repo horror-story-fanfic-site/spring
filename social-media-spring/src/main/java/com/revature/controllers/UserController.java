@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.annotations.Authorized;
 import com.revature.models.User;
 import com.revature.services.UserService;
 
@@ -122,13 +123,14 @@ public class UserController {
 	}
 	
 	// view one user that is currently logged in.
+	@Authorized
 	@GetMapping("/viewUser")
-	public User findUser(HttpSession session, HttpServletRequest req) {
+	public ResponseEntity<Optional<User>> findUser(HttpSession session, HttpServletRequest req) {
 		
 		User sessionUser = (User) session.getAttribute("user");
 		User user = userService.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
 		
-		return userService.getuserById(user.getId());
+		return findUser(user.getUsername());
 		
 	}
 	
@@ -138,8 +140,9 @@ public class UserController {
 	 * @param req, looking for the parameter "username"
 	 * @return the found User
 	 */
+//	@Authorized
 	@GetMapping("/peek")
-	public Optional<User> findUser(HttpServletRequest req) {
+	public ResponseEntity<Optional<User>> findUser(HttpServletRequest req) {
 		
 		String username = req.getParameter("username");
 		
@@ -154,10 +157,12 @@ public class UserController {
 	 * @param username
 	 * @return
 	 */
+	@Authorized
 	@GetMapping("/peek/{username}")
-	public Optional<User> findUser(@PathVariable("username") String username) {
+	public ResponseEntity<Optional<User>> findUser(@PathVariable("username") String username) {
 		
-		return userService.findByUsername(username);
+		//return userService.getByUsername(username);
+		return ResponseEntity.ok(this.userService.findByUsername(username));
 		
 		
 	}
