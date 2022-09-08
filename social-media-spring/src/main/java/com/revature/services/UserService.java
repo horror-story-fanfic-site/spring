@@ -247,6 +247,14 @@ public class UserService { // implements UserServiceInterface {
 		return userRepository.findAll();
 	}
 
+
+
+	public Optional<User> findByUsername(String username) {
+		
+		return userRepository.findByUsername(username);
+	}
+	
+
     
    
 
