@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -136,10 +137,19 @@ public class UserController {
 	 * @param req, looking for the parameter "username"
 	 * @return the User
 	 */
-	@GetMapping("/findUser")
+	@GetMapping("/peek")
 	public Optional<User> findUser(HttpServletRequest req) {
 		
 		String username = req.getParameter("username");
+		
+//		return userService.findByUsername(username);
+		return findUser(username);
+		
+		
+	}
+	
+	@GetMapping("/peek/{username}")
+	public Optional<User> findUser(@PathVariable("username") String username) {
 		
 		return userService.findByUsername(username);
 		
