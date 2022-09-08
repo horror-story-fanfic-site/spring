@@ -43,7 +43,18 @@ public class Post {
 	private List<LikeAPost> emojiList;
 
 	public Post(int id, String text) {
+<<<<<<< HEAD
 		this.id = id;
 		this.text = text;
 	}
+=======
+		super();
+		this.id = id;
+		this.text = text;
+	}
+
+
+	
+	
+>>>>>>> 6b13d21a8d5cf67300381970736649781d5a5d41
 }
