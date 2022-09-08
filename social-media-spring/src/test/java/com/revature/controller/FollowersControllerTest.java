@@ -1,5 +1,4 @@
 package com.revature.controller;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoSession.*;
@@ -40,22 +39,18 @@ class FollowersControllerTest {
 	@Test
 	void test() {
 		User currentUser = (User) session.getAttribute("user");
-//		Optional<User> testUser = Optional.of(new User(10, "test@gmail.com","password", "roman", "dixon", "test", null, null, null, null, null, null, null, null));
+		Optional<User> testUser = Optional.of(new User(1, "test@gmail.com","password", "roman", "dixon", "test", null, null, null, null, null, null, null, null));
+
+		//when(userServ.findUserFollowRequest("test","Roman","Dixon")).thenReturn(testUser);
 		
-		Optional<User> initialUser = Optional.of(new User("password", "testuser"));
-		Optional<User> testUser = Optional.of(new User("password", "testuser"));
-//		User testUser = Optional.of(new User(10, "test@gmail.com","password", "roman", "dixon", "test", null, null, null, null, null, null, null, null));
-		when(userServ.findUserFollowRequest("test")).thenReturn(testUser);
-		
-		System.out.println(testUser.toString());
 		FollowerRequest testRequest = new FollowerRequest("test","Roman","Dixon");
-		System.out.println(testRequest.toString());
+
 		ResponseEntity<User> actualVal = myFollow.insert(testRequest, session);
-		
+
 		
 		
 //		verify(userServ, times(1)).findUserFollowRequest();
-		assertEquals(testRequest, actualVal.getBody());
+		assertEquals(testUser.get(), actualVal.getBody());
 	}
 
 }
