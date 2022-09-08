@@ -70,4 +70,16 @@ public class PostController {
     	
     	return ResponseEntity.ok("");
     }
+    
+    @Authorized
+	@GetMapping(value="/testSession")
+	public void testSession(HttpSession session){
+		
+		User currentUser = (User) session.getAttribute("user");
+		
+		System.out.println(currentUser);
+//		return ResponseEntity.ok(currentUser.getFollowers());
+		
+		
+	}
 }
