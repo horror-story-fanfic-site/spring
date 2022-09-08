@@ -72,7 +72,7 @@ public class User {
     private List<Post> posts;
     
     //people who follow this user
-    @ManyToMany
+    @ManyToMany(fetch =FetchType.EAGER)
     @JsonIgnore
     private List<User> followers;
     
