@@ -2,11 +2,14 @@ package com.revature.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,7 +17,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.annotations.Authorized;
+import com.revature.models.Post;
 import com.revature.models.User;
+import com.revature.services.PostService;
 import com.revature.services.UserService;
 
 
@@ -26,18 +32,19 @@ import com.revature.services.UserService;
  * 
  *
  */
-
 @RestController
 @RequestMapping("/user")
 @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class UserController {
 	
 	private final UserService userService;
+//	private final PostService postService;
 	
 	
 	public UserController(UserService userService) {
 		super();
 		this.userService = userService;
+//		this.postService = postService;
 	}
 
 	@PostMapping("/updateusername")
@@ -119,6 +126,56 @@ public class UserController {
 		return ResponseEntity.ok(userService.searchUsers(query));
 	}
 	
+//	@Authorized
+//	@PostMapping("/viewPost")
+//	public String viewPost(HttpSession session, HttpServletRequest req){
+//		User sessionUser = (User) session.getAttribute("user");
+//		User user = userService.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
+//		int postId=Integer.parseInt(req.getParameter("postId"));
+//		Post post=postService.getPost(postId);
+//		boolean viewedBefore=userService.viewPost(user, post);
+//		if (viewedBefore)
+//			return "false";
+//		else
+//			return "true";
+//		
+//	}
+	
+	// view one user, BUT this functionality should already be handled by the login controller so this may be irrelevant.
+	@GetMapping("/viewUser")
+	public User findUser(HttpSession session, HttpServletRequest req) {
+		
+		User sessionUser = (User) session.getAttribute("user");
+		User user = userService.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
+		
+		return userService.getuserById(user.getId());
+		
+	}
+	
+	/**
+	 * Find the User, given the username
+	 * @param req, looking for the parameter "username"
+	 * @return the User
+	 */
+	@GetMapping("/peek")
+	public Optional<User> findUser(HttpServletRequest req) {
+		
+		String username = req.getParameter("username");
+		
+//		return userService.findByUsername(username);
+		return findUser(username);
+		
+		
+	}
+	
+	@GetMapping("/peek/{username}")
+	public Optional<User> findUser(@PathVariable("username") String username) {
+		
+		return userService.findByUsername(username);
+		
+		
+	}
+
 	@PostMapping("/getAllUsernames")
 	public List<String> getAllUsernames(){
 		
@@ -134,5 +191,4 @@ public class UserController {
 		return usernameList;
 	}
 	
-
 }
