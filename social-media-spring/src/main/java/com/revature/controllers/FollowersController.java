@@ -47,6 +47,9 @@ public class FollowersController {
             return ResponseEntity.badRequest().build();
         }else {
         	User currentUser = (User) session.getAttribute("user");
+        	if(currentUser.getId() == searchFollower.get().getId()) {
+        		return ResponseEntity.badRequest().build();
+        	}
         	currentUser.getPeopleFollowed().add(searchFollower.get());
         	searchFollower.get().getFollowers().add(currentUser);
         	userServ.save(searchFollower.get());
