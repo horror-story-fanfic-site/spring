@@ -24,24 +24,26 @@ import lombok.NoArgsConstructor;
 public class Post {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-	
-	@Column(name="text", nullable=true)	
-	private String text;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-	@Column(name="image_url", nullable=true)
+	@Column(name = "text", nullable = true)
+	private String text;
+
+	@Column(name = "image_url", nullable = true)
 	private String imageUrl;
-	
-	
+
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Post> comments;
-	
-	
+
 	@ManyToOne
 	private User author;
-	
+
 	@OneToMany
 	private List<LikeAPost> emojiList;
+
+	public Post(int id, String text) {
+		this.id = id;
+		this.text = text;
+	}
 }
