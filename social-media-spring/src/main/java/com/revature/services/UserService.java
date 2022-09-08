@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import com.revature.models.Post;
 import com.revature.models.User;
 import com.revature.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,7 +89,7 @@ public class UserService { // implements UserServiceInterface {
 		return users;
 	}
 
-       
+//Ever heard of DRY?       
     /**
      * Change the birthday of the user in the database
      * @param user the model of the user
@@ -233,6 +234,22 @@ public class UserService { // implements UserServiceInterface {
     	
     }
     
+    /***
+     * Run this to record when a user views a post.
+     * @param user
+     * @param post
+     * @return
+     */
+//    public boolean viewPost(User user, Post post) {
+//		List<Post> posts=user.getPostViews();
+//		if (posts.contains(post)) {
+//			return false;
+//		}
+//    	posts.add(post);
+//		
+//		userRepository.save(user);
+//		return true;
+//	}
 
 
 	public Optional<User> findUserFollowRequest(String username) {
@@ -243,9 +260,19 @@ public class UserService { // implements UserServiceInterface {
 		return userRepository.findByEmail(email);
 	}
 	
+	public List<User> findAllUsers() {
+		return userRepository.findAll();
+	}
+
+
+
+	public Optional<User> findByUsername(String username) {
+		
+		return userRepository.findByUsername(username);
+	}
+	
 
     
    
-
 }
 
