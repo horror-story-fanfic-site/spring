@@ -12,7 +12,7 @@ import com.revature.repositories.LikeAPostRepository;
 import com.revature.repositories.PostRepository;
 
 @Service
-public class PostService {
+public class PostService { // implements PostServiceInterface {
 
 	private final PostRepository postRepository;
 	private final LikeAPostRepository likeAPostRepository;

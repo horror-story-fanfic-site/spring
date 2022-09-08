@@ -1,18 +1,34 @@
 package com.revature.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
+@Getter
+@Setter
 public class User {
 
     @Id
@@ -20,7 +36,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "email", nullable = false)
+
+    @Column(name = "email", nullable = false, unique=true)
     private String email;
 
     @Column(name = "password", nullable = false)
@@ -32,7 +49,7 @@ public class User {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "username", nullable = false)
+    @Column(name = "username", nullable = false, unique=true)
     private String username;
 
     @Column(name = "profile_pic", nullable = true)
@@ -53,13 +70,21 @@ public class User {
     @OneToMany
     @JoinColumn(name = "posts_fk")
     private List<Post> posts;
-
-    @OneToMany
+    
+    //people who follow this user
+    @ManyToMany
+    @JsonIgnore
     private List<User> followers;
     
+<<<<<<< HEAD
 //    @ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
 //	private List<Post> postViews;
    //TODO change it to a model that keeps track of when it was viewed and other complex stuff.
+=======
+    //people who this user follows
+    @ManyToMany
+    private List<User> peopleFollowed;
+>>>>>>> b6952a69c0778fefa8d24dd19cc028b6d4435e18
 
     public User(int id, String email, String password, String firstName, String lastName, String username) {
         super();
@@ -71,4 +96,25 @@ public class User {
         this.username = username;
     }
 
+	/**
+	 * @param password
+	 * @param username
+	 */
+	public User(String password, String username) {
+		super();
+		this.password = password;
+		this.username = username;
+	}
+
+//	/**
+//	 * @param email
+//	 * @param password
+//	 */
+//	public User(String email, String password) {
+//		super();
+//		this.email = email;
+//		this.password = password;
+//	}
+    
+    
 }
