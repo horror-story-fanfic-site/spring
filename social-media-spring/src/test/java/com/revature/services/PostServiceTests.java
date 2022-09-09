@@ -1,6 +1,7 @@
 package com.revature.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -47,26 +48,108 @@ class PostServiceTests {
 	@Test
 	void postEmojiTest() {
 
-		User initialUser = new User("password", "testuser");
-		Emoji initialEmoji = new Emoji(1, "thumbsup", "its a like");
-		LikeAPost initialLikeAPost = new LikeAPost(1, initialUser, initialEmoji);
-		Post sparePost = new Post(2, "comments");
-		List<LikeAPost> emojiList = new ArrayList<>();
-		emojiList.add(initialLikeAPost);
-		List<Post> postList = new ArrayList<>();
-		postList.add(sparePost);
-		Post initialPost = new Post(1, "test", "image", postList, initialUser, emojiList);
+//		User initialUser = new User("password", "testuser");
+		User[] userList = new User[2];
+		for(int x=0;x<userList.length;x++) {
+			User user = new User();
+			user.setId(x+1);
+			userList[x]=user;
+		}
+		
+//		Emoji initialEmoji = new Emoji(1, "thumbsup", "its a like");
+		Emoji[] emojiList = new Emoji[2];
+		for(int x=0;x<emojiList.length;x++) {
+			Emoji emoji = new Emoji();
+			emoji.setEmojiId(x+1);
+			emojiList[x]=emoji;
+		}
+		
+		Post[] postList=new Post[2];
+		//Sorry that it is a mess.
+		//Set id, like a post list using numbers above, and
+		for(int x=0;x<postList.length;x++) {
+			Post post = new Post();
+			post.setId(x+1);
+			List<LikeAPost> likeAPostList = new ArrayList<LikeAPost>();
+			post.setEmojiList(likeAPostList);
+			postList[x]=post;
+			
+			when(postRepository.getReferenceById(x+1)).thenReturn(postList[x]);
+		}
+		when(postRepository.getReferenceById(3)).thenReturn(null);
+		
+		LikeAPost[] likeList = new LikeAPost[3];
+		//array index is 1 lower than id.
+		int[] postLike = {0, 1, 0};
+		int[] userLike = {1, 1, 0};
+		int[] emojiLike = {0, 1, 0};
+		for(int x=0;x<likeList.length;x++) {
+			LikeAPost likePost =  new LikeAPost();
+			likePost.setLikeId(x+1);
+			likePost.setOwner(userList[userLike[x]]);
+			likePost.setEmoji(emojiList[emojiLike[x]]);
+			postList[postLike[x]].getEmojiList().add(likePost);
+		}
+		
+		
+		//Setting up tests below here.
+		//array index is 1 lower than id.
+		//NOTE the data in post is being altered each test.
+		
+		//test one add
+		LikeAPost like1 = new LikeAPost(0, userList[0], emojiList[0]);
+		int postId1=2;
+		List<LikeAPost> result1 = new ArrayList<LikeAPost>();
+		LikeAPost resultLike11 = new LikeAPost(2, userList[1], emojiList[1]);
+		LikeAPost resultLike12 = new LikeAPost(4, userList[1], emojiList[1]);
+		when(likeAPostRepository.save(like1)).thenReturn(resultLike12);
+		result1.add(resultLike11);
+		result1.add(resultLike12);
+		
+		service.postEmoji(postId1, like1);
+		
+		verify(postRepository, times(1)).getReferenceById(2);
+		verify(likeAPostRepository, times(1)).save(like1);
+		verify(postRepository, times(1)).save(postList[1]);
+		
+		assertEquals(result1, postList[1].getEmojiList());
+		
+		
+		//test two remove
+		LikeAPost like2 = new LikeAPost(0, userList[0], emojiList[0]);
+		int postId2=1;
+		List<LikeAPost> result2 = new ArrayList<LikeAPost>();
+		LikeAPost resultLike21 = new LikeAPost(1, userList[1], emojiList[0]);
+		result2.add(resultLike21);
+		
+		service.postEmoji(postId2, like2);
+		
+		verify(postRepository, times(1)).getReferenceById(1);
+		verify(likeAPostRepository, times(1)).deleteById(3);
+		verify(postRepository, times(1)).save(postList[0]);
+		
+		assertEquals(result2, postList[0].getEmojiList());
+		
+		
+		//Test 3 exception
+		LikeAPost like3 = new LikeAPost(0, userList[0], emojiList[0]);
+		int postId3=3;
 
-		when(postRepository.getReferenceById(1)).thenReturn(initialPost);
-		when(likeAPostRepository.save(initialLikeAPost)).thenReturn(initialLikeAPost);
+		assertThrows(IllegalArgumentException.class, ()-> service.postEmoji(postId3, like3));
+		verify(postRepository, times(1)).getReferenceById(3);
+		
+		
+//		when(likeAPostRepository.save(initialLikeAPost)).thenReturn(initialLikeAPost);
 
 		// Act
-			service.postEmoji(1, initialLikeAPost);
+//			service.postEmoji(1, initialLikeAPost);
+		
 
 		// Assert
-		verify(postRepository, times(1)).getReferenceById(1);
-		verify(likeAPostRepository, times(1)).save(initialLikeAPost);
-		verify(postRepository, times(1)).save(initialPost);
+//		verify(postRepository, times(1)).getReferenceById(1);
+//		verify(likeAPostRepository, times(1)).save(initialLikeAPost);
+//		verify(postRepository, times(1)).save(initialPost);
+		
 	}
 
 	@Test
