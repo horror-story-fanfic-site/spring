@@ -2,6 +2,7 @@ package com.revature.repositories;
 
 import com.revature.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	 */
     Optional<User> findByUsernameAndPassword(String username, String password);
     
-    Optional<User> findByUsernameAndFirstNameAndLastName(String username, String firstName, String lastName);
+    Optional<User> findByUsername(String username);
     
 	Optional<User> findByEmail(String email);
+	
+//	ResponseEntity<User> getByUsername(String username);
 }

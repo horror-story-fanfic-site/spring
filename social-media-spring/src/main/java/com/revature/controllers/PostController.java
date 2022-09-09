@@ -56,12 +56,30 @@ public class PostController {
     	user = userService.getuserById(user.getId());
     	Emoji emoji = postService.getEmoji(Integer.parseInt(req.getParameter("emojiId")));
     	
-    	
     	LikeAPost likeAPost = new LikeAPost(0, user, emoji);
-    	
-    	postService.postEmoji(Integer.parseInt(req.getParameter("postId")), likeAPost);
-    	
+    	try {
+        	postService.postEmoji(Integer.parseInt(req.getParameter("postId")), likeAPost);
+        	ResponseEntity.status(200);
+    	}
+    	catch(IllegalArgumentException e) {
+    		
+    		ResponseEntity.status(400);
+    		//Not sure how to get this to work.
+//    		return ResponseEntity.ok("");
+    	}
     	
     	return ResponseEntity.ok("");
     }
+    
+    @Authorized
+	@GetMapping(value="/testSession")
+	public void testSession(HttpSession session){
+		
+		User currentUser = (User) session.getAttribute("user");
+		
+		System.out.println(currentUser);
+//		return ResponseEntity.ok(currentUser.getFollowers());
+		
+		
+	}
 }
