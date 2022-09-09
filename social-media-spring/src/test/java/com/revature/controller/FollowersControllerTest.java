@@ -36,21 +36,32 @@ class FollowersControllerTest {
 //		myFollow = new FollowersController(userServ);
 //	}
 
-//	@Test
-//	void test() {
-//		User currentUser = (User) session.getAttribute("user");
-//		Optional<User> testUser = Optional.of(new User(1, "test@gmail.com","password", "roman", "dixon", "test", null, null, null, null, null, null, null, null));
-//
-//		//when(userServ.findUserFollowRequest("test","Roman","Dixon")).thenReturn(testUser);
-//		
-//		FollowerRequest testRequest = new FollowerRequest("test","Roman","Dixon");
-//
-//		ResponseEntity<User> actualVal = myFollow.insert(testRequest, session);
-//
-//		
-//		
-////		verify(userServ, times(1)).findUserFollowRequest();
-//		assertEquals(testUser.get(), actualVal.getBody());
-//	}
+
+	@Test
+	void insertFollowerTest() {
+		
+		// Arrange
+		User currentUser = (User) session.getAttribute("user");
+
+		User expectedUser = (User) session.getAttribute("user");
+		//when(userServ.findUserFollowRequest("test","Roman","Dixon")).thenReturn(testUser);
+		
+		FollowerRequest testRequest = new FollowerRequest("testuser", "firstN", "lastN");
+
+		
+		// Act
+		
+		Optional<User> searchFollower = userServ.findUserFollowRequest(testRequest.getUserName());
+		
+		
+		// Assert
+		ResponseEntity<User> actualVal = myFollow.insert(testRequest, session);
+
+		
+		
+//		verify(userServ, times(1)).findUserFollowRequest();
+		assertEquals(expectedUser, actualVal.getBody());
+	}
+
 
 }
