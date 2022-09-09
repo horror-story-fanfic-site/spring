@@ -26,7 +26,7 @@ public class Emoji {
 	@Column(name="emoji_name", nullable=true, unique=true)
 	private String emojiName;
 	
-	@Column(name="descript", nullable=true)
-	private String desc;
+	@Column(name="emoji_pic", nullable=true)
+	private String emojiPic;
 	
 }
