@@ -57,13 +57,12 @@ public class PostService { // implements PostServiceInterface {
 		if (likeId==0) {
 			like=likeAPostRepository.save(like);
 			post.getEmojiList().add(like);
+			postRepository.save(post);
 		}else {
-			likeAPostRepository.deleteById(likeId);
 			post.getEmojiList().remove(x);
+			postRepository.save(post);
+			likeAPostRepository.deleteById(likeId);
 		}
-		
-		
-		postRepository.save(post);
 	}
 	
 	public Emoji getEmoji(int id) {
