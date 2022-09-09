@@ -65,8 +65,21 @@ public class PostController {
     		
     		ResponseEntity.status(400);
     		//Not sure how to get this to work.
+//    		return ResponseEntity.ok("");
     	}
     	
     	return ResponseEntity.ok("");
     }
+    
+    @Authorized
+	@GetMapping(value="/testSession")
+	public void testSession(HttpSession session){
+		
+		User currentUser = (User) session.getAttribute("user");
+		
+		System.out.println(currentUser);
+//		return ResponseEntity.ok(currentUser.getFollowers());
+		
+		
+	}
 }

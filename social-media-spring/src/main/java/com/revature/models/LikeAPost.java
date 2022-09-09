@@ -1,7 +1,5 @@
 package com.revature.models;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,5 +29,15 @@ public class LikeAPost {
 	
 	@ManyToOne
 	private Emoji emoji;
-
+	
+	public boolean isEqual(LikeAPost comparison) {
+		
+		if (comparison.getOwner().getId()!=owner.getId()) {
+			return false;
+		}else if(comparison.getEmoji().getEmojiId()!=emoji.getEmojiId()) {
+			return false;
+		}
+		
+		return true;
+	}
 }
