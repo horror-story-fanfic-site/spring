@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -48,7 +49,7 @@ public class UserController {
 //		this.postService = postService;
 	}
 
-	@PostMapping("/updateusername")
+	@PutMapping("/updateusername")
 	public String updateUsername(HttpSession session, HttpServletRequest req) {
 		User sessionUser = (User) session.getAttribute("user");
 		User user = userService.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
@@ -63,9 +64,10 @@ public class UserController {
 		}
 
 		return "false";
+		
 	}
 
-	@PostMapping("/updatedescription")
+	@PutMapping("/updatedescription")
 	public String updateDescription(HttpSession session, HttpServletRequest req) {
 		User sessionUser = (User) session.getAttribute("user");
 		User user = userService.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
@@ -88,7 +90,7 @@ public class UserController {
 	 * @param req the HTTPServlet req
 	 * @return A string stating whether or not the birthday was changed
 	 */
-	@PostMapping("/changeBirthday")
+	@PutMapping("/changeBirthday")
 	public String updateBirthday(HttpSession session, HttpServletRequest req) {
 		
 		User sessionUser = (User) session.getAttribute("user");
@@ -109,7 +111,7 @@ public class UserController {
 	 * @param req the HTTPServlet req
 	 * @return a string stating if the profile picture has changed
 	 */
-	@PostMapping("/changeProfilePicture")
+	@PutMapping("/changeProfilePicture")
 	public String updatePicture(HttpSession session, HttpServletRequest req) {
 		
 		User sessionUser = (User) session.getAttribute("user");
