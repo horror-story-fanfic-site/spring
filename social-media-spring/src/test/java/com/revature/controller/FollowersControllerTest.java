@@ -33,10 +33,11 @@ class FollowersControllerTest {
 	@Mock
 	HttpSession session;
 	
-	@BeforeEach
-	void setUp() throws Exception {
-		myFollow = new FollowersController(userServ);
-	}
+//	@BeforeEach
+//	void setUp() throws Exception {
+//		myFollow = new FollowersController(userServ);
+//	}
+
 
 	@Test
 	void insertFollowerTest() {

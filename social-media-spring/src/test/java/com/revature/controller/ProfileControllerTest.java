@@ -24,20 +24,20 @@ class ProfileControllerTest {
 		this.userController = userController;
 	}
 
-	@BeforeEach
-	void setUp() throws Exception {
-
-		userController = new UserController(userService);
-	}
-
-	@Test
-	void testUpdateUsername() {
-		String username = "Dawntel";
-		String password = "password";
-		
-		User initialUser = new User(1,"bear@aol.com","password","Bod","Bold","Dacus","pic url","i like pizza","6","5","1991",null,null,null);
-		User testUser =  new User(1,"bear@aol.com","password","Bod","Bold","Dawntel","pic url","i like pizza","6","5","1991",null,null,null);
-		//when(userService.findByUsernameCredentials(username, password).thenReturns(testUser);
-	}
+//	@BeforeEach
+//	void setUp() throws Exception {
+//
+//		userController = new UserController(userService);
+//	}
+//
+//	@Test
+//	void testUpdateUsername() {
+//		String username = "Dawntel";
+//		String password = "password";
+//		
+//		User initialUser = new User(1,"bear@aol.com","password","Bod","Bold","Dacus","pic url","i like pizza","6","5","1991",null,null,null);
+//		User testUser =  new User(1,"bear@aol.com","password","Bod","Bold","Dawntel","pic url","i like pizza","6","5","1991",null,null,null);
+//		//when(userService.findByUsernameCredentials(username, password).thenReturns(testUser);
+//	}
 
 }
