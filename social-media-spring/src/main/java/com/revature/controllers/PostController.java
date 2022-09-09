@@ -1,6 +1,9 @@
 package com.revature.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -40,6 +43,25 @@ public class PostController {
     @GetMapping
     public ResponseEntity<List<Post>> getAllPosts() {
     	return ResponseEntity.ok(this.postService.getAll());
+    }
+    
+    @Authorized
+    @GetMapping("/followposts")
+    public ResponseEntity<List<Post>> getAllFollowerPosts(HttpSession session) {
+    	User currentUser = (User) session.getAttribute("user");
+    	List<User> followingList = currentUser.getPeopleFollowed();
+    	List<String> followingListName = new ArrayList<>();
+    	for(User user : followingList) {
+    		followingListName.add(user.getUsername());
+    	}
+    	Set<String>  userFilterSet = followingListName.stream().collect(Collectors.toSet()); 
+    	List<Post> allPosts = postService.getAll();
+    	List<Post> filteredPosts = new ArrayList<>();
+    	
+    	filteredPosts = allPosts.stream().filter(post -> userFilterSet.contains(post.getAuthor().getUsername()))
+    						.collect(Collectors.toList());
+    	
+    	return ResponseEntity.ok(filteredPosts);
     }
     
     @Authorized

@@ -1,9 +1,9 @@
 package com.revature.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,9 +65,18 @@ public class FollowersController {
 	 */
 	@Authorized
 	@GetMapping(value="/followinglist")
-	public ResponseEntity<List<User>> getAllFollowing(HttpSession session){
+	public ResponseEntity<List<String>> getAllFollowing(HttpSession session){
+		List<String> followingUsernames= new ArrayList();
+		List<User> userList = new ArrayList<>();
 		User currentUser = (User) session.getAttribute("user");
-		return ResponseEntity.ok(currentUser.getPeopleFollowed());
+		userList = currentUser.getPeopleFollowed();
+		
+		for(int i=0; i<userList.size(); i++) {
+			String temp = userList.get(i).getUsername();
+			followingUsernames.add(temp);
+			}
+		
+		return ResponseEntity.ok(followingUsernames);
 		
 	}
 	
