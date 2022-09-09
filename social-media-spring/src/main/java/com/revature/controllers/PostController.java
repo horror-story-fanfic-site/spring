@@ -48,6 +48,7 @@ public class PostController {
     @Authorized
     @GetMapping("/followposts")
     public ResponseEntity<List<Post>> getAllFollowerPosts(HttpSession session) {
+    	System.out.println("reached the follow post\t\n\n\n\n");
     	User currentUser = (User) session.getAttribute("user");
     	List<User> followingList = currentUser.getPeopleFollowed();
     	List<String> followingListName = new ArrayList<>();
