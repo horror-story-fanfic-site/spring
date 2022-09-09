@@ -43,7 +43,7 @@ class FollowersControllerTest {
 	void insertFollowerTest() {
 		
 		// Arrange
-		User currentUser = (User) session.getAttribute("user");
+//		User currentUser = (User) session.getAttribute("user");
 
 		User expectedUser = (User) session.getAttribute("user");
 		//when(userServ.findUserFollowRequest("test","Roman","Dixon")).thenReturn(testUser);
@@ -53,7 +53,7 @@ class FollowersControllerTest {
 		
 		// Act
 		
-		Optional<User> searchFollower = userServ.findUserFollowRequest(testRequest.getUserName());
+//		Optional<User> searchFollower = userServ.findUserFollowRequest(testRequest.getUserName());
 		
 		
 		// Assert
