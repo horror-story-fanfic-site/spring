@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.revature.models.Emoji;
 import com.revature.models.LikeAPost;
 import com.revature.models.Post;
+import com.revature.models.front.FrontEmoji;
 import com.revature.repositories.EmojiRepository;
 import com.revature.repositories.LikeAPostRepository;
 import com.revature.repositories.PostRepository;
@@ -44,7 +46,6 @@ public class PostService { // implements PostServiceInterface {
 		if (post==null) {
 			throw new IllegalArgumentException();
 		}
-		//TODO exception for if it already exists.
 		List<LikeAPost> postLikes = post.getEmojiList();
 		int likeId=0;
 		int x;
@@ -71,5 +72,38 @@ public class PostService { // implements PostServiceInterface {
 	
 	public Post getPost(int id) {
 		return postRepository.getReferenceById(id);
+	}
+	
+	public List<FrontEmoji> getPostEmojis(int postId, int userId){
+		Post post = postRepository.getReferenceById(postId);
+		
+		if (post==null) {
+			throw new IllegalArgumentException();
+		}
+		List<LikeAPost> postLikes = post.getEmojiList();
+		List<FrontEmoji> results = new ArrayList<FrontEmoji>();
+		
+		for(int x=0;x<postLikes.size();x++) {
+			
+			int frontIndex;//To test if it existed before.
+			for(frontIndex=0;frontIndex<results.size();frontIndex++) {
+				if (results.get(frontIndex).getEmoji()==postLikes.get(x).getEmoji()) {
+					break;
+				}
+			}
+			
+			if (frontIndex==results.size()) {
+				results.add(new FrontEmoji(postLikes.get(x).getEmoji(), 0, false));
+			}
+			
+			int count=results.get(frontIndex).getCount();
+			count++;
+			results.get(frontIndex).setCount(count);
+			
+			if (postLikes.get(x).getOwner().getId()==userId) {
+				results.get(frontIndex).setYou(true);
+			}
+		}
+		return results;
 	}
 }

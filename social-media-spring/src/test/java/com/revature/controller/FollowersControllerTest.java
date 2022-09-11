@@ -24,6 +24,7 @@ import com.revature.services.UserService;
 @ExtendWith(MockitoExtension.class)
 class FollowersControllerTest {
 
+	@Mock
 	FollowersController myFollow;
 	
 	@Mock
@@ -32,26 +33,36 @@ class FollowersControllerTest {
 	@Mock
 	HttpSession session;
 	
-	@BeforeEach
-	void setUp() throws Exception {
-		myFollow = new FollowersController(userServ);
-	}
+//	@BeforeEach
+//	void setUp() throws Exception {
+//		myFollow = new FollowersController(userServ);
+//	}
+
 
 	@Test
-	void test() {
+	void insertFollowerTest() {
+		
+		// Arrange
 		User currentUser = (User) session.getAttribute("user");
-		Optional<User> testUser = Optional.of(new User(1, "test@gmail.com","password", "roman", "dixon", "test", null, null, null, null, null, null, null, null));
 
+		User expectedUser = (User) session.getAttribute("user");
 		//when(userServ.findUserFollowRequest("test","Roman","Dixon")).thenReturn(testUser);
 		
-		FollowerRequest testRequest = new FollowerRequest("test","Roman","Dixon");
+		FollowerRequest testRequest = new FollowerRequest("testuser", "firstN", "lastN");
 
+		
+		// Act
+		
+		Optional<User> searchFollower = userServ.findUserFollowRequest(testRequest.getUserName());
+		
+		
+		// Assert
 		ResponseEntity<User> actualVal = myFollow.insert(testRequest, session);
 
 		
 		
 //		verify(userServ, times(1)).findUserFollowRequest();
-		assertEquals(testUser.get(), actualVal.getBody());
+		assertEquals(expectedUser, actualVal.getBody());
 	}
 
 }

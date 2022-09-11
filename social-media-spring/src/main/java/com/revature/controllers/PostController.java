@@ -1,6 +1,9 @@
 package com.revature.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +22,7 @@ import com.revature.models.Emoji;
 import com.revature.models.LikeAPost;
 import com.revature.models.Post;
 import com.revature.models.User;
+import com.revature.models.front.FrontEmoji;
 import com.revature.services.PostService;
 import com.revature.services.UserService;
 
@@ -43,6 +47,26 @@ public class PostController {
     }
     
     @Authorized
+    @GetMapping("/followposts")
+    public ResponseEntity<List<Post>> getAllFollowerPosts(HttpSession session) {
+    	System.out.println("reached the follow post\t\n\n\n\n");
+    	User currentUser = (User) session.getAttribute("user");
+    	List<User> followingList = currentUser.getPeopleFollowed();
+    	List<String> followingListName = new ArrayList<>();
+    	for(User user : followingList) {
+    		followingListName.add(user.getUsername());
+    	}
+    	Set<String>  userFilterSet = followingListName.stream().collect(Collectors.toSet()); 
+    	List<Post> allPosts = postService.getAll();
+    	List<Post> filteredPosts = new ArrayList<>();
+    	
+    	filteredPosts = allPosts.stream().filter(post -> userFilterSet.contains(post.getAuthor().getUsername()))
+    						.collect(Collectors.toList());
+    	
+    	return ResponseEntity.ok(filteredPosts);
+    }
+    
+    @Authorized
     @PutMapping
     public ResponseEntity<Post> upsertPost(@RequestBody Post post) {
     	return ResponseEntity.ok(this.postService.upsert(post));
@@ -55,6 +79,7 @@ public class PostController {
     	User user = (User)session.getAttribute("user");
     	user = userService.getuserById(user.getId());
     	Emoji emoji = postService.getEmoji(Integer.parseInt(req.getParameter("emojiId")));
+    	//TODO try catch for different status to above.
     	
     	LikeAPost likeAPost = new LikeAPost(0, user, emoji);
     	try {
@@ -82,4 +107,18 @@ public class PostController {
 		
 		
 	}
+    
+    @Authorized
+    @PostMapping(value="/getEmojis")
+    public ResponseEntity<List<FrontEmoji>> getPostEmojis(HttpSession session, HttpServletRequest req) {
+
+    	int postId = Integer.parseInt(req.getParameter("postId"));
+    	int userId = ((User)session.getAttribute("user")).getId();
+    	//TODO try catch for different status to above.
+    	
+    	List<FrontEmoji> results=postService.getPostEmojis(postId, userId);
+    	
+    	return ResponseEntity.ok(results);
+    	
+    }
 }
