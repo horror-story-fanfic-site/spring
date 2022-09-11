@@ -110,15 +110,15 @@ public class PostController {
     
     @Authorized
     @PostMapping(value="/getEmojis")
-    public ResponseEntity<List<FrontEmoji>> getPostEmojis(HttpServletRequest req) {
+    public ResponseEntity<List<FrontEmoji>> getPostEmojis(HttpSession session, HttpServletRequest req) {
 
-    	int postId = Integer.parseInt(req.getParameter("emojiId"));
-    	int userId = Integer.parseInt(req.getParameter("userId"));
+    	int postId = Integer.parseInt(req.getParameter("postId"));
+    	int userId = ((User)session.getAttribute("user")).getId();
     	//TODO try catch for different status to above.
     	
-    	List<FrontEmoji> results=postService.getPostEmojis(postId, postId);
+    	List<FrontEmoji> results=postService.getPostEmojis(postId, userId);
     	
-    	return null;
+    	return ResponseEntity.ok(results);
     	
     }
 }
