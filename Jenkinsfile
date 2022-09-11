@@ -27,7 +27,7 @@ pipeline {
         stage ("Build my project") {
 			steps{
 				echo 'Building right now'
-					sh 'mvn clean install'
+					sh 'mvn clean package'
 			}
 		}
         stage('Destroy Old Server') {
