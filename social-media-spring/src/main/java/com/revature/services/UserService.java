@@ -6,11 +6,15 @@ import com.revature.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Optional;
+
+import javax.imageio.ImageIO;
 
 @Service
 public class UserService { // implements UserServiceInterface {
@@ -45,6 +49,9 @@ public class UserService { // implements UserServiceInterface {
 	/**
 	 * This is the end point for search bar. Determines it by characters and
 	 * followers their order.
+	 * 
+	 * @param search
+	 * @return
 	 */
 	public List<User> searchUsers(String search) {
 		// Grabs a list of all the current users.
@@ -220,9 +227,12 @@ public class UserService { // implements UserServiceInterface {
      */
     public String changeProfilePicture(User user, String newPicture) {
     	
-    	user.setProfilePic(newPicture);
-    	
     	try {
+    		//check if the url is valid picture
+    		ImageIO.read(new URL(newPicture));
+    		
+    		//save the picture
+    		user.setProfilePic(newPicture);
     		userRepository.save(user);
     		return "Picture Changed";
     		
@@ -261,6 +271,10 @@ public class UserService { // implements UserServiceInterface {
 		return userRepository.findByEmail(email);
 	}
 	
+	/***
+	 * Returns all the others.
+	 * @return
+	 */
 	public List<User> findAllUsers() {
 		return userRepository.findAll();
 	}

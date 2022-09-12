@@ -123,6 +123,12 @@ public class UserController {
 	}
 
 
+	/***
+	 * This is a server side search statement.
+	 * Currently not in use do to existence of angular side one.
+	 * @param req	query
+	 * @return
+	 */
 	@PostMapping("/search")
 	public ResponseEntity<List<User>> searchUser(HttpServletRequest req){
 		String query=req.getParameter("query");
@@ -191,6 +197,10 @@ public class UserController {
 		
 	}
 
+	/***
+	 * This returns the name of all the users.
+	 * @return
+	 */
 	@PostMapping("/getAllUsernames")
 	public List<String> getAllUsernames(){
 		
