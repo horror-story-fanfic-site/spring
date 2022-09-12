@@ -22,6 +22,7 @@ import com.revature.models.Emoji;
 import com.revature.models.LikeAPost;
 import com.revature.models.Post;
 import com.revature.models.User;
+import com.revature.models.front.FrontEmoji;
 import com.revature.services.PostService;
 import com.revature.services.UserService;
 
@@ -78,11 +79,13 @@ public class PostController {
     	User user = (User)session.getAttribute("user");
     	user = userService.getuserById(user.getId());
     	Emoji emoji = postService.getEmoji(Integer.parseInt(req.getParameter("emojiId")));
+    	//TODO try catch for different status to above.
     	
     	LikeAPost likeAPost = new LikeAPost(0, user, emoji);
     	try {
         	postService.postEmoji(Integer.parseInt(req.getParameter("postId")), likeAPost);
         	ResponseEntity.status(200);
+        	
     	}
     	catch(IllegalArgumentException e) {
     		
@@ -105,4 +108,18 @@ public class PostController {
 		
 		
 	}
+    
+    @Authorized
+    @PostMapping(value="/getEmojis")
+    public ResponseEntity<List<FrontEmoji>> getPostEmojis(HttpSession session, HttpServletRequest req) {
+
+    	int postId = Integer.parseInt(req.getParameter("postId"));
+    	int userId = ((User)session.getAttribute("user")).getId();
+    	//TODO try catch for different status to above.
+    	
+    	List<FrontEmoji> results=postService.getPostEmojis(postId, userId);
+    	
+    	return ResponseEntity.ok(results);
+    	
+    }
 }
