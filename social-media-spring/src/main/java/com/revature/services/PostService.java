@@ -74,7 +74,13 @@ public class PostService { // implements PostServiceInterface {
 		return postRepository.getReferenceById(id);
 	}
 	
-	public synchronized List<FrontEmoji> getPostEmojis(int postId, int userId){
+	/***
+	 * Retrieve the emojis attached to a post.
+	 * @param postId
+	 * @param userId
+	 * @return
+	 */
+	public List<FrontEmoji> getPostEmojis(int postId, int userId){
 		Post post = postRepository.getReferenceById(postId);
 		
 		if (post==null) {
