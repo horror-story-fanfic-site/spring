@@ -3,7 +3,7 @@
 This is a social media API built using Spring Boot. The frontend component can be found [here](https://github.com/revature-2206-social-capstone/angular).
 
 <!-- FEATURES -->
-### Features
+## Features
 - A user can register an account and login.
 - A user can reset their password.
 - A user can create posts, reply to posts, and like posts.
@@ -11,29 +11,31 @@ This is a social media API built using Spring Boot. The frontend component can b
 - A user can search for other users and follow other users.
 
 <!-- TECHNOLOGIES USED -->
-### Technologies Used
+## Technologies Used
+- Java
 - Spring Boot
 - PostgreSQL
 - Maven
 
 <!-- GETTING STARTED -->
-### Getting Started
+## Getting Started
 
-1. Clone the repo:
+<!-- getting started steps -->
+### Clone the repo:
    ``` 
    git clone https://github.com/revature-2206-social-capstone/spring.git
    ```
-2. Add database driver (Optional):
+### (Optional) Add database driver:
    
-   >This project was built using a PostgresSQL database. If you would like to use PostgreSQL do nothing, but you can use your preferred by going to https://mvnrepository.com/ and finding the driver there, adding the dependency into the POM file, and updating the maven project. 
+   This project was built using a PostgresSQL database. If you would like to use PostgreSQL do nothing, but you can use your preferred by going to https://mvnrepository.com/ and finding the driver there, adding the dependency into the POM file, and updating the maven project. 
    
-3. Update the application.yml file:
+### Update the application.yml file:
    
-   >In src/main/resources/application.yml change the url, username, password, driver class name, and (optional) port. Additionally change the database platform if neccessary and choose the ddl-auto option (none, create, create-drop, validate, update)
+   In src/main/resources/application.yml change the url, username, password, driver class name, and (optional) port. Additionally change the database platform if neccessary and choose the ddl-auto option (none, create, create-drop, validate, update)
    
 
 <!-- CONTRIBUTING -->
-### Contributing
+## Contributing
 
 1. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
 2. Create Branch Upstream (`git push --set-upstream origin [feature/AmazingFeature]`
