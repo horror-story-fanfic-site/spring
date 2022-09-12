@@ -20,6 +20,7 @@ import com.revature.models.Emoji;
 import com.revature.models.LikeAPost;
 import com.revature.models.Post;
 import com.revature.models.User;
+import com.revature.models.front.FrontEmoji;
 import com.revature.repositories.EmojiRepository;
 import com.revature.repositories.LikeAPostRepository;
 import com.revature.repositories.PostRepository;
@@ -179,4 +180,94 @@ class PostServiceTests {
 		assertEquals(posts[2], service.getPost(3));
 	}
 
+	@Test
+	void getPostEmojis() {
+		Post[] posts = new Post[3];
+		for(int x=0;x<posts.length;x++) {
+			Post post = new Post();
+			post.setId(x+1);
+			post.setEmojiList(new ArrayList<LikeAPost>());
+			posts[x]=post;
+			when(postRepository.getReferenceById(x + 1)).thenReturn(post);
+		}
+		when(postRepository.getReferenceById(posts.length+1)).thenReturn(null);
+		User[] users = new User[3];
+		for (int x=0;x<users.length;x++) {
+			User user = new User();
+			user.setId(x+1);
+			users[x]=user;
+		}
+		Emoji[] emojies = new Emoji[3];
+		for(int x=0;x<emojies.length;x++) {
+			Emoji emoji = new Emoji();
+			emoji.setEmojiId(x+1);
+			emojies[x]=emoji;
+		}
+		
+		posts[1].getEmojiList().add(
+			new LikeAPost(1, users[0], emojies[0])
+		);
+		posts[1].getEmojiList().add(
+			new LikeAPost(3, users[1], emojies[0])
+		);
+		posts[2].getEmojiList().add(
+			new LikeAPost(2, users[0], emojies[2])
+		);
+		posts[2].getEmojiList().add(
+			new LikeAPost(5, users[1], emojies[1])
+		);
+		posts[2].getEmojiList().add(
+			new LikeAPost(4, users[2], emojies[2])
+		);
+		
+		//Test exception
+		
+		assertThrows(IllegalArgumentException.class, ()-> service.getPostEmojis(4, 1));
+		assertThrows(IllegalArgumentException.class, ()-> service.getPostEmojis(4, 2));
+		
+		verify(postRepository, times(2)).getReferenceById(4);
+		
+		//test empty post.
+		List<FrontEmoji> front1 = new ArrayList<FrontEmoji>();
+		assertEquals(front1, service.getPostEmojis(1, 1));
+		assertEquals(front1, service.getPostEmojis(1, 2));
+		assertEquals(front1, service.getPostEmojis(1, 3));
+		
+		verify(postRepository, times(3)).getReferenceById(1);
+		
+		//test post 2
+		List<FrontEmoji> front2 = new ArrayList<FrontEmoji>();
+		front2.add(new FrontEmoji(emojies[0], 2, true));
+		
+		assertEquals(front2, service.getPostEmojis(2, 1));
+		assertEquals(front2, service.getPostEmojis(2, 2));
+		
+
+		List<FrontEmoji> front3 = new ArrayList<FrontEmoji>();
+		front3.add(new FrontEmoji(emojies[0], 2, false));
+		assertEquals(front3, service.getPostEmojis(2, 3));
+		
+		verify(postRepository, times(3)).getReferenceById(2);
+		
+		//test post 3
+		List<FrontEmoji> front4 = new ArrayList<FrontEmoji>();
+		front4.add(new FrontEmoji(emojies[2], 2, true));
+		front4.add(new FrontEmoji(emojies[1], 1, false));
+		
+		assertEquals(front4, service.getPostEmojis(3, 1));
+		
+		List<FrontEmoji> front5 = new ArrayList<FrontEmoji>();
+		front5.add(new FrontEmoji(emojies[2], 2, false));
+		front5.add(new FrontEmoji(emojies[1], 1, true));
+		
+		assertEquals(front5, service.getPostEmojis(3, 2));
+		
+		List<FrontEmoji> front6 = new ArrayList<FrontEmoji>();
+		front6.add(new FrontEmoji(emojies[2], 2, true));
+		front6.add(new FrontEmoji(emojies[1], 1, false));
+		
+		assertEquals(front6, service.getPostEmojis(3, 3));
+		
+		verify(postRepository, times(3)).getReferenceById(3);
+	}
 }
