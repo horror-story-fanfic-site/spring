@@ -45,6 +45,9 @@ public class UserService { // implements UserServiceInterface {
 	/**
 	 * This is the end point for search bar. Determines it by characters and
 	 * followers their order.
+	 * 
+	 * @param search
+	 * @return
 	 */
 	public List<User> searchUsers(String search) {
 		// Grabs a list of all the current users.
@@ -261,6 +264,10 @@ public class UserService { // implements UserServiceInterface {
 		return userRepository.findByEmail(email);
 	}
 	
+	/***
+	 * Returns all the others.
+	 * @return
+	 */
 	public List<User> findAllUsers() {
 		return userRepository.findAll();
 	}
