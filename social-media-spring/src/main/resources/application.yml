@@ -10,7 +10,7 @@ spring:
   sql:
     init:
       data-locations:
-        - classpath:./data.sql
+#        - classpath:./data.sql
       mode: always
 
   jpa:
@@ -18,5 +18,5 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
 
