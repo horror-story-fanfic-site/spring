@@ -85,6 +85,7 @@ public class PostController {
     	try {
         	postService.postEmoji(Integer.parseInt(req.getParameter("postId")), likeAPost);
         	ResponseEntity.status(200);
+        	
     	}
     	catch(IllegalArgumentException e) {
     		
