@@ -66,10 +66,20 @@ public class PostService { // implements PostServiceInterface {
 		}
 	}
 	
+	/***
+	 * This returns an emoji with the matching id.
+	 * @param id
+	 * @return
+	 */
 	public Emoji getEmoji(int id) {
 		return emojiRepository.getReferenceById(id);
 	}
 	
+	/***
+	 * This returns an emoji with the matching id.
+	 * @param id
+	 * @return
+	 */
 	public Post getPost(int id) {
 		return postRepository.getReferenceById(id);
 	}
@@ -89,23 +99,28 @@ public class PostService { // implements PostServiceInterface {
 		List<LikeAPost> postLikes = post.getEmojiList();
 		List<FrontEmoji> results = new ArrayList<FrontEmoji>();
 		
+		//To find which ones match the post and create the return for them.
 		for(int x=0;x<postLikes.size();x++) {
 			
-			int frontIndex;//To test if it existed before.
+			int frontIndex;//To test if the emoji existed before.
 			for(frontIndex=0;frontIndex<results.size();frontIndex++) {
 				if (results.get(frontIndex).getEmoji()==postLikes.get(x).getEmoji()) {
 					break;
 				}
 			}
 			
+			//If this is the first time the emoji was found in this loop.
 			if (frontIndex==results.size()) {
 				results.add(new FrontEmoji(postLikes.get(x).getEmoji(), 0, false));
 			}
 			
+			//This raises the current count of the emoji by one.
 			int count=results.get(frontIndex).getCount();
 			count++;
 			results.get(frontIndex).setCount(count);
 			
+			//Changes to true. if the current owner is among the count.
+			//Leaves it to false otherwise.
 			if (postLikes.get(x).getOwner().getId()==userId) {
 				results.get(frontIndex).setYou(true);
 			}
