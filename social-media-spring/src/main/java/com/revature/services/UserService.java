@@ -1,14 +1,11 @@
 package com.revature.services;
 
-import com.revature.models.Post;
 import com.revature.models.User;
 import com.revature.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ArrayList;
@@ -19,9 +16,11 @@ import javax.imageio.ImageIO;
 @Service
 public class UserService { // implements UserServiceInterface {
 
+	/////Variable
 	private final UserRepository userRepository;
 
 
+	/////Constructor
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -34,6 +33,12 @@ public class UserService { // implements UserServiceInterface {
 		return userRepository.findByEmailAndPassword(email, password);
 	}
 
+    /**
+     * Find user based on a username and password
+     * @param username the username with will be looked for
+     * @param password the password of the user
+     * @return the user object of the 
+     */
 	public Optional<User> findByUsernameCredentials(String username, String password) {
 		return userRepository.findByUsernameAndPassword(username, password);
 	}
@@ -96,8 +101,7 @@ public class UserService { // implements UserServiceInterface {
 		}
 		return users;
 	}
-
-//Ever heard of DRY?       
+     
     /**
      * Change the birthday of the user in the database
      * @param user the model of the user
@@ -111,21 +115,20 @@ public class UserService { // implements UserServiceInterface {
     	user.setBirthDay(newDay);
     	user.setBirthMonth(newMonth);
     	user.setBirthYear(newYear);
-    	
-		LocalDate currentDate = LocalDate.now();
 
 		
-			// Individual cases for each month
+			// Switch case to make sure the days of each month are correct
 			switch (newMonth) {
 
-				case ("1"):
+				case ("1")://accounting for January, day must be between no lower than 1 and no greater than 31 
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 31) {
 						userRepository.save(user);
 						return "Birthday Changed";
 					}
 					break;
 				
-				//accounting for leap year
+		
+				//accounting for Feb, day must be between no lower than 1 and no greater than 28 except for leap year 
 				case ("2"):
 					if (new GregorianCalendar().isLeapYear(Integer.parseInt(newYear))) {
 						if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 29) {
@@ -140,6 +143,7 @@ public class UserService { // implements UserServiceInterface {
 					}
 					break;
 
+				//accounting for March, day must be between no lower than 1 and no greater than 31 
 				case ("3"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 31) {
 						userRepository.save(user);
@@ -147,6 +151,7 @@ public class UserService { // implements UserServiceInterface {
 					}
 					break;
 
+				//accounting for April, day must be between no lower than 1 and no greater than 30 
 				case ("4"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 30) {
 						userRepository.save(user);
@@ -154,13 +159,14 @@ public class UserService { // implements UserServiceInterface {
 					}
 					break;
 
+				//accounting for May, day must be between no lower than 1 and no greater than 31 
 				case ("5"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 31) {
 						userRepository.save(user);
 						return "Birthday Changed";
 					}
 					break;
-
+				//accounting for June, day must be between no lower than 1 and no greater than 30 
 				case ("6"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 30) {
 						userRepository.save(user);
@@ -168,13 +174,15 @@ public class UserService { // implements UserServiceInterface {
 					}
 					break;
 
+				//accounting for July, day must be between no lower than 1 and no greater than 31 
 				case ("7"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 31) {
 						userRepository.save(user);
 						return "Birthday Changed";
 					}
 					break;
-
+					
+				//accounting for August, day must be between no lower than 1 and no greater than 31 
 				case ("8"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 31) {
 						userRepository.save(user);
@@ -182,6 +190,7 @@ public class UserService { // implements UserServiceInterface {
 					}
 					break;
 
+				//accounting for Sept, day must be between no lower than 1 and no greater than 30 
 				case ("9"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 30) {
 						userRepository.save(user);
@@ -189,6 +198,7 @@ public class UserService { // implements UserServiceInterface {
 					}
 					break;
 
+				//accounting for Oct, day must be between no lower than 1 and no greater than 31 
 				case ("10"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 31) {
 						userRepository.save(user);
@@ -196,6 +206,7 @@ public class UserService { // implements UserServiceInterface {
 					}
 					break;
 
+				//accounting for Nov, day must be between no lower than 1 and no greater than 30
 				case ("11"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 30) {
 						userRepository.save(user);
@@ -203,6 +214,7 @@ public class UserService { // implements UserServiceInterface {
 					}
 					break;
 
+				//accounting for Dec, day must be between no lower than 1 and no greater than 31 
 				case ("12"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 31) {
 						userRepository.save(user);
@@ -222,7 +234,7 @@ public class UserService { // implements UserServiceInterface {
     /**
      * Change the user's profile picture
      * @param user the user model of the logged in user
-     * @param newPicture the new picture for the user
+     * @param newPicture the new picture for the user, this is in the form of a URL
      * @return a string stating if the picture has changed
      */
     public String changeProfilePicture(User user, String newPicture) {
@@ -273,7 +285,7 @@ public class UserService { // implements UserServiceInterface {
 	
 	/***
 	 * Returns all the others.
-	 * @return
+	 * @return a list of all users
 	 */
 	public List<User> findAllUsers() {
 		return userRepository.findAll();
@@ -289,14 +301,6 @@ public class UserService { // implements UserServiceInterface {
 		
 		return userRepository.findByUsername(username);
 	}
-	
-
-    
-   
-//	public ResponseEntity<User> getByUsername(String username) {
-//		
-//		return userRepository.getByUsername(username);
-//	}
 
 
 }
