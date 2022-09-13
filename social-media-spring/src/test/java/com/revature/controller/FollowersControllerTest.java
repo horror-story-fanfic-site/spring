@@ -1,5 +1,4 @@
 package com.revature.controller;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoSession.*;
@@ -20,25 +19,25 @@ import com.revature.controllers.FollowersController;
 import com.revature.dtos.FollowerRequest;
 import com.revature.models.User;
 import com.revature.services.UserService;
-@SpringBootTest
-@ExtendWith(MockitoExtension.class)
-class FollowersControllerTest {
+//@SpringBootTest
+//@ExtendWith(MockitoExtension.class)
+//class FollowersControllerTest {
 
-	@Mock
-	FollowersController myFollow;
-	
-	@Mock
-	UserService userServ;
-	
-	@Mock
-	HttpSession session;
-	
-//	@BeforeEach
+//	FollowersController myFollow;
+//	
+//	@Mock
+//	UserService userServ;
+//	
+//	@Mock
+//	HttpSession session;
+//	
+////	@BeforeEach
 //	void setUp() throws Exception {
 //		myFollow = new FollowersController(userServ);
 //	}
 
 
+<<<<<<< HEAD
 	@Test
 	void insertFollowerTest() {
 		
@@ -51,13 +50,27 @@ class FollowersControllerTest {
 //		Optional<User> expectedUser = userServ.findUserFollowRequest(toFollow.getUserName());
 //		//when(userServ.findUserFollowRequest("test","Roman","Dixon")).thenReturn(testUser);
 //		System.out.println("CHECKPOINT: " + expectedUser);
+=======
+//	@Test
+//	void insertFollowerTest() {
+//		
+//		// Arrange
+//		User currentUser = (User) session.getAttribute("user");
+//
+//		User expectedUser = (User) session.getAttribute("user");
+//		//when(userServ.findUserFollowRequest("test","Roman","Dixon")).thenReturn(testUser);
+>>>>>>> 0903f421c66d9271e082c28939ef17dc17f5203a
 //		
 //		FollowerRequest testRequest = new FollowerRequest("testuser", "firstN", "lastN");
 //
 //		
 //		// Act
 //		
+<<<<<<< HEAD
 ////		Optional<User> searchFollower = userServ.findUserFollowRequest(testRequest.getUserName());
+=======
+//		Optional<User> searchFollower = userServ.findUserFollowRequest(testRequest.getUserName());
+>>>>>>> 0903f421c66d9271e082c28939ef17dc17f5203a
 //		
 //		
 //		// Assert
@@ -67,6 +80,13 @@ class FollowersControllerTest {
 //		
 ////		verify(userServ, times(1)).findUserFollowRequest();
 //		assertEquals(expectedUser, actualVal.getBody());
+<<<<<<< HEAD
 	}
 
 }
+=======
+//	}
+//
+//
+//}
+>>>>>>> 0903f421c66d9271e082c28939ef17dc17f5203a
