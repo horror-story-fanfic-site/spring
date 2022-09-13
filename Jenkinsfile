@@ -27,7 +27,7 @@ pipeline {
         stage ("Build my project") {
 			steps{
 				echo 'Building right now'
-					sh 'mvn clean package'
+					sh 'mvn -f spring/social-media-spring clean package'
 			}
 		}
         stage('Destroy Old Server') {

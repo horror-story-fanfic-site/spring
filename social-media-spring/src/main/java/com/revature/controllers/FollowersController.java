@@ -50,6 +50,11 @@ public class FollowersController {
         	if(currentUser.getId() == searchFollower.get().getId()) {
         		return ResponseEntity.badRequest().build();
         	}
+        	for(int i = 0; i<currentUser.getPeopleFollowed().size(); i++) {
+        		if(searchFollower.get().getId() == currentUser.getPeopleFollowed().get(i).getId()) {
+        			return ResponseEntity.badRequest().build();
+        		}
+        	}
         	currentUser.getPeopleFollowed().add(searchFollower.get());
         	searchFollower.get().getFollowers().add(currentUser);
         	userServ.save(searchFollower.get());
@@ -80,6 +85,11 @@ public class FollowersController {
 		
 	}
 	
+	/**
+	 * returns a list of accounts that are following the current user
+	 * @param session
+	 * @return
+	 */
 	@Authorized
 	@GetMapping(value="/followerlist")
 	public ResponseEntity<List<User>> getAllFollowers(HttpSession session){
