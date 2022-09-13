@@ -72,6 +72,13 @@ public class PostController {
     	return ResponseEntity.ok(this.postService.upsert(post));
     }
     
+    /***
+     * This is the end point to add an emoji to a post.
+     * 
+     * @param session
+     * @param req	emojiId 	PostId
+     * @return
+     */
     @Authorized
     @PostMapping("/likePost")
     public ResponseEntity<String> likePost(HttpSession session, HttpServletRequest req){
@@ -109,6 +116,13 @@ public class PostController {
 		
 	}
     
+    /***
+     * The end point for getting all the emojis assigned to a post
+     * 
+     * @param session
+     * @param req	postId
+     * @return	a FrontEmoji list
+     */
     @Authorized
     @PostMapping(value="/getEmojis")
     public ResponseEntity<List<FrontEmoji>> getPostEmojis(HttpSession session, HttpServletRequest req) {

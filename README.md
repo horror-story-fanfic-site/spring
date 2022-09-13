@@ -1,6 +1,6 @@
 <!-- TITLE -->
-# Social Media API
-This is a social media API built using Spring Boot. The frontend component can be found [here](https://github.com/revature-2206-social-capstone/angular).
+# WEBSITE NAME GOES HERE API
+This is the API for a horror story fan-fic website. The frontend component can be found [here](https://github.com/revature-2206-social-capstone/angular). The full stack of this application was built using Java and Angular.
 
 <!-- FEATURES -->
 ## Features
