@@ -34,7 +34,13 @@ public class AuthController {
         this.authService = authService;
         this.userSvc=userSvc;
     }
-
+    
+    /**
+     * finds account in database and stores current user into a server session
+     * @param loginRequest
+     * @param session
+     * @return
+     */
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody LoginRequest loginRequest, HttpSession session) {
         Optional<User> optional = authService.findByCredentials(loginRequest.getEmail(), loginRequest.getPassword());
@@ -48,6 +54,12 @@ public class AuthController {
         return ResponseEntity.ok(optional.get());
     }
     
+    /**
+     * Verifies user email within the database
+     * @param loginRequest
+     * @param session
+     * @return
+     */
     @PostMapping("/forgottenpassword")
     public ResponseEntity<User> findEmail(@RequestBody LoginRequest loginRequest, HttpSession session) {
     	Optional<User> optional = authService.findByEmail(loginRequest.getEmail());
@@ -60,14 +72,24 @@ public class AuthController {
 
          return ResponseEntity.ok(optional.get());
     }
-
+    
+    /**
+     * removes the session's current user
+     * @param session
+     * @return
+     */
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(HttpSession session) {
         session.removeAttribute("user");
 
         return ResponseEntity.ok().build();
     }
-
+    
+    /**
+     * creates a new account and stores it into the database
+     * @param registerRequest
+     * @return
+     */
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody RegisterRequest registerRequest) {
         User created = new User(0,
@@ -82,6 +104,12 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(created));
     }
     
+    /**
+     * changes current users password
+     * @param loginRequest
+     * @param session
+     * @return
+     */
     @Authorized
     @PostMapping("/resetuserpassword")
     public ResponseEntity<User> resetUserPassword(@RequestBody LoginRequest loginRequest, HttpSession session) {
