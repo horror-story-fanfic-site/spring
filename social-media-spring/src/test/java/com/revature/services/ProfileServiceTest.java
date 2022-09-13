@@ -34,8 +34,6 @@ class ProfileServiceTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-	
-	
 	}
 
 	@AfterAll
@@ -47,7 +45,6 @@ class ProfileServiceTest {
 	void setUp() throws Exception {
 		
 			userService = new UserService(userRepository);
-	
 	}
 		
 	@AfterEach
