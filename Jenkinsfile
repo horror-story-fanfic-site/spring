@@ -48,7 +48,7 @@ pipeline {
             steps {
                 script {
 		     sh 'pwd'
-                     sh 'nohup java -jar ./spring/social-media-spring/build/libs/social-media-spring-1.0-SNAPSHOT.jar &'
+                     sh 'nohup java -jar ./spring/social-media-spring/target/social-media-spring.jar'
                 }
             }
         }
