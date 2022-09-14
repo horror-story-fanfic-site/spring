@@ -20,9 +20,19 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	 */
     Optional<User> findByUsernameAndPassword(String username, String password);
     
+    /**
+     * Find a user by their username in the database, should return one username because all usernames are unique
+     * @param username  the username of the user 
+     * @return the user object that corresponds with the username 
+     */
     Optional<User> findByUsername(String username);
     
+    /**
+     * Find a user by their email in the database, should returnb one user because emails are unique
+     * @param email the email of the user
+     * @return the user object that corresponds with the email.
+     */
 	Optional<User> findByEmail(String email);
 	
-//	ResponseEntity<User> getByUsername(String username);
+
 }
