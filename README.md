@@ -1,5 +1,5 @@
 <!-- TITLE -->
-# WEBSITE NAME GOES HERE API
+# Handle With Scare API
 This is the API for a horror story fan-fic website. The frontend component can be found [here](https://github.com/revature-2206-social-capstone/angular). The full stack of this application was built using Java and Angular.
 
 <!-- FEATURES -->
