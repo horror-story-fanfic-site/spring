@@ -20,9 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.annotations.Authorized;
 
-import com.revature.models.Post;
 import com.revature.models.User;
-import com.revature.services.PostService;
 import com.revature.services.UserService;
 
 
@@ -39,16 +37,24 @@ import com.revature.services.UserService;
 @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class UserController {
 	
+	////VARIABLE
 	private final UserService userService;
-//	private final PostService postService;
+
 	
-	
+	////////////CONSTRUCTOR
 	public UserController(UserService userService) {
 		super();
 		this.userService = userService;
-//		this.postService = postService;
 	}
 
+	/////////////ENDPOINTS
+	
+	/**
+	 * 
+	 * @param session the session of the user
+	 * @param req the request that the user sent
+	 * @return a string of either true or false as to if the username was updated
+	 */
 	@PutMapping("/updateusername")
 	public String updateUsername(HttpSession session, HttpServletRequest req) {
 		User sessionUser = (User) session.getAttribute("user");
@@ -67,6 +73,12 @@ public class UserController {
 		
 	}
 
+	/**
+	 * 
+	 * @param session the user's session
+	 * @param req the req that the user sent
+	 * @return a string stating true of false if the user's description was changed
+	 */
 	@PutMapping("/updatedescription")
 	public String updateDescription(HttpSession session, HttpServletRequest req) {
 		User sessionUser = (User) session.getAttribute("user");
@@ -152,7 +164,12 @@ public class UserController {
 //		
 //	}
 	
-	// view one user, BUT this functionality should already be handled by the login controller so this may be irrelevant.
+	/**
+	 * Function used to find the user who is currently logged in. 
+	 * @param session the session of the user
+	 * @param req the request of the user
+	 * @return the user obj (if it exists) containing data of the user
+	 */
 	@GetMapping("/viewUser")
 	public Optional<User> findUser(HttpSession session, HttpServletRequest req) {
 		
@@ -176,10 +193,7 @@ public class UserController {
 		
 		String username = req.getParameter("username");
 		
-//		return userService.findByUsername(username);
 		return findUser(username);
-		
-		
 	}
 	
 	/**
@@ -192,9 +206,6 @@ public class UserController {
 	public Optional<User> findUser(@PathVariable("username") String username) {
 		
 		return userService.findByUsername(username);
-
-		
-		
 	}
 
 	/***
