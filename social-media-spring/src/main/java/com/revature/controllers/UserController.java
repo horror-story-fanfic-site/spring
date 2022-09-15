@@ -103,7 +103,7 @@ public class UserController {
 	 * @return A string stating whether or not the birthday was changed
 	 */
 	@PutMapping("/changeBirthday")
-	public String updateBirthday(HttpSession session, HttpServletRequest req) {
+	public void updateBirthday(HttpSession session, HttpServletRequest req) {
 		
 		User sessionUser = (User) session.getAttribute("user");
 		User user = userService.findByUsernameCredentials(sessionUser.getUsername(), sessionUser.getPassword()).get();
@@ -114,7 +114,7 @@ public class UserController {
 		String newBirthYear = req.getParameter("newBirthYear");
 		
 		
-		return userService.changeDoB(user, newBirthDay, newBirthMonth, newBirthYear);
+		userService.changeDoB(user, newBirthDay, newBirthMonth, newBirthYear);
 	}
 	
 	/**
