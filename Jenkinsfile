@@ -3,6 +3,7 @@ pipeline {
 	
 	environment{
 		JENKINS_NODE_COOKIE = 'dontkillmeplease'
+		port = '9002'
     }
 	
 	stages {
@@ -46,6 +47,7 @@ pipeline {
         stage('Start New Server!') {
             steps {
                 script {
+		                sh 'pwd'
                      sh 'nohup java -jar ./spring/social-media-spring/target/social-media-spring.jar &'
                 }
             }
