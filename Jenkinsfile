@@ -46,7 +46,7 @@ pipeline {
         stage('Start New Server!') {
             steps {
                 script {
-                     sh 'nohup java -jar ./JenkinsDemoGitHub/build/libs/JenkinsDemoProject-1.0-SNAPSHOT.jar &'
+                     sh 'nohup java -jar ./spring/social-media-spring/target/social-media-spring.jar &'
                 }
             }
         }
