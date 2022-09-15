@@ -47,7 +47,7 @@ pipeline {
         stage('Start New Server!') {
             steps {
                 script {
-		     sh 'pwd'
+		                sh 'pwd'
                      sh 'nohup java -jar ./spring/social-media-spring/target/social-media-spring.jar &'
                 }
             }
