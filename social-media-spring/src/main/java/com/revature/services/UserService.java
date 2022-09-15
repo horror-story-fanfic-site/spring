@@ -110,7 +110,7 @@ public class UserService { // implements UserServiceInterface {
      * @param newYear the year in which the user wants to change their birthday to
      * @return
      */
-    public String changeDoB(User user, String newDay, String newMonth, String newYear) {
+    public void changeDoB(User user, String newDay, String newMonth, String newYear) {
     	
     	user.setBirthDay(newDay);
     	user.setBirthMonth(newMonth);
@@ -123,7 +123,7 @@ public class UserService { // implements UserServiceInterface {
 				case ("1")://accounting for January, day must be between no lower than 1 and no greater than 31 
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 31) {
 						userRepository.save(user);
-						return "Birthday Changed";
+//						return "Birthday Changed";
 					}
 					break;
 				
@@ -133,12 +133,12 @@ public class UserService { // implements UserServiceInterface {
 					if (new GregorianCalendar().isLeapYear(Integer.parseInt(newYear))) {
 						if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 29) {
 							userRepository.save(user);
-							return "Birthday Changed";
+//							return "Birthday Changed";
 						}
 					} else {
 						if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 28) {
 							userRepository.save(user);
-							return "Birthday Changed";
+//							return "Birthday Changed";
 						}
 					}
 					break;
@@ -147,7 +147,7 @@ public class UserService { // implements UserServiceInterface {
 				case ("3"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 31) {
 						userRepository.save(user);
-						return "Birthday Changed";
+//						return "Birthday Changed";
 					}
 					break;
 
@@ -155,7 +155,7 @@ public class UserService { // implements UserServiceInterface {
 				case ("4"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 30) {
 						userRepository.save(user);
-						return "Birthday Changed";
+//						return "Birthday Changed";
 					}
 					break;
 
@@ -163,14 +163,14 @@ public class UserService { // implements UserServiceInterface {
 				case ("5"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 31) {
 						userRepository.save(user);
-						return "Birthday Changed";
+//						return "Birthday Changed";
 					}
 					break;
 				//accounting for June, day must be between no lower than 1 and no greater than 30 
 				case ("6"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 30) {
 						userRepository.save(user);
-						return "Birthday Changed";
+//						return "Birthday Changed";
 					}
 					break;
 
@@ -178,7 +178,7 @@ public class UserService { // implements UserServiceInterface {
 				case ("7"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 31) {
 						userRepository.save(user);
-						return "Birthday Changed";
+//						return "Birthday Changed";
 					}
 					break;
 					
@@ -186,7 +186,7 @@ public class UserService { // implements UserServiceInterface {
 				case ("8"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 31) {
 						userRepository.save(user);
-						return "Birthday Changed";
+//						return "Birthday Changed";
 					}
 					break;
 
@@ -194,7 +194,7 @@ public class UserService { // implements UserServiceInterface {
 				case ("9"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 30) {
 						userRepository.save(user);
-						return "Birthday Changed";
+//						return "Birthday Changed";
 					}
 					break;
 
@@ -202,7 +202,7 @@ public class UserService { // implements UserServiceInterface {
 				case ("10"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 31) {
 						userRepository.save(user);
-						return "Birthday Changed";
+//						return "Birthday Changed";
 					}
 					break;
 
@@ -210,7 +210,7 @@ public class UserService { // implements UserServiceInterface {
 				case ("11"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 30) {
 						userRepository.save(user);
-						return "Birthday Changed";
+//						return "Birthday Changed";
 					}
 					break;
 
@@ -218,15 +218,15 @@ public class UserService { // implements UserServiceInterface {
 				case ("12"):
 					if (Integer.parseInt(newDay) >= 1 && Integer.parseInt(newDay) <= 31) {
 						userRepository.save(user);
-						return "Birthday Changed";
+//						return "Birthday Changed";
 					}
 					break;
 
 				default:
-					return "Invalid Date";
+//					return "Invalid Date";
 			}
 
-		return "Invalid Date";
+//		return "Invalid Date";
     	
     }
     
