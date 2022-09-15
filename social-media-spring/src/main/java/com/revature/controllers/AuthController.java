@@ -97,7 +97,8 @@ public class AuthController {
                 registerRequest.getPassword(),
                 registerRequest.getFirstName(),
                 registerRequest.getLastName(),
-                registerRequest.getUsername());
+                registerRequest.getUsername(),
+                "https://cdn.pixabay.com/photo/2021/06/07/13/45/user-6318003_960_720.png");
         		
         		
 
