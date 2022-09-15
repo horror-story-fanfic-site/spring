@@ -23,7 +23,8 @@ import com.revature.services.UserService;
 
 @RequestMapping("/followers")
 @RestController
-@CrossOrigin(origins = "http://44.201.120.76:4200", allowCredentials = "true")
+//@CrossOrigin(origins = "http://44.201.120.76:4200", allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class FollowersController {
 
 	private final UserService userServ;
