@@ -85,7 +85,7 @@ public class User {
     @ManyToMany
     private List<User> peopleFollowed;
 
-    public User(int id, String email, String password, String firstName, String lastName, String username) {
+    public User(int id, String email, String password, String firstName, String lastName, String username, String profilePic) {
         super();
         this.id = id;
         this.email = email;
@@ -93,6 +93,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
+        this.profilePic = profilePic;
     }
 
 	/**

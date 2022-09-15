@@ -23,7 +23,7 @@ import com.revature.services.UserService;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+@CrossOrigin(origins = "http://44.201.120.76:4200", allowCredentials = "true")
 public class AuthController {
 
     private final AuthService authService;
@@ -97,7 +97,8 @@ public class AuthController {
                 registerRequest.getPassword(),
                 registerRequest.getFirstName(),
                 registerRequest.getLastName(),
-                registerRequest.getUsername());
+                registerRequest.getUsername(),
+                "https://cdn.pixabay.com/photo/2021/06/07/13/45/user-6318003_960_720.png");
         		
         		
 
